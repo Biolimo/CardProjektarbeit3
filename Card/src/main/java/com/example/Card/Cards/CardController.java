@@ -2,6 +2,8 @@ package com.example.Card.Cards;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.time.LocalDate;
 import java.util.List;
 
 
@@ -28,6 +30,16 @@ public class CardController {
     @DeleteMapping(path = "{cardId}")
     public void deleteCard(@PathVariable("cardId") Long cardId){
         cardService.deleteCard(cardId);
+    }
+
+    @PutMapping(path = "{cardId}")
+    public void updateCard(
+            @PathVariable("cardId")Long cardId,
+            @RequestParam(required = false) String question,
+            @RequestParam(required = false) LocalDate dueDate){
+        System.out.println(question);
+        cardService.updateCard(cardId, question, dueDate);
+
     }
 
 }

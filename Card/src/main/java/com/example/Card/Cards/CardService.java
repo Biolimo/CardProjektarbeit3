@@ -1,8 +1,10 @@
 package com.example.Card.Cards;
 
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -39,5 +41,24 @@ public class CardService {
         }
         cardRepository.deleteById(cardId);
 
+    }
+
+
+    //This code changes a card by its ID. If the ID is not found, it throws an exception.
+    @Transactional
+    public void updateCard(Long cardId,
+                           String question,
+                           LocalDate dueDate){
+        Card card = cardRepository.findById(cardId)
+                .orElseThrow(() -> new IllegalStateException(
+                        "card with id " + cardId + "is not found"));
+
+        if(question != null){
+            card.setQuestion(question);
+        }
+        if(dueDate != null){
+            card.setDueDate(dueDate);
+        }
+        System.out.println("we made it !!!" + card.getQuestion() + question);
     }
 }
