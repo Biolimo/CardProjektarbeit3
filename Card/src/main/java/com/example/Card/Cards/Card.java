@@ -26,20 +26,8 @@ public class Card {
     private boolean isDrafted;
     private String question;
 
-    private static long idCounter = 0;
-
     public Card() {
     }
-
-    /*public Card(LocalDate dueDate, String question) {
-        this.id = idCounter;
-        idCounter++;
-        this.creationDate = LocalDate.now();
-        this.successCounter = 0;
-        this.isDrafted = false;
-        this.question = question;
-        this.dueDate = dueDate;
-    }*/
     public Card(LocalDate dueDate, String question) {
         this.creationDate = LocalDate.now();
         this.successCounter = 0;
