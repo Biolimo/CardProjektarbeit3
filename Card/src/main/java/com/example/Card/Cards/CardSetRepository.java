@@ -6,5 +6,6 @@ import java.util.Optional;
 
 public interface CardSetRepository
         extends JpaRepository<CardSet,Long> {
+    Optional<CardSet> findCardSetByName(String name);
 
 }

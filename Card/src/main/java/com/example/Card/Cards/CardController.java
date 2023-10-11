@@ -8,7 +8,8 @@ import java.time.LocalDate;
 import java.util.List;
 
 
-@RestController()
+@RestController
+@RequestMapping("/card")
 public class CardController {
     private final CardService cardService;
 
@@ -67,7 +68,7 @@ public class CardController {
             @PathVariable("cardId")Long cardId,
             @RequestParam(required = false) String question,
             @RequestParam(required = false) LocalDate dueDate){
-        System.out.println(question);
+        System.out.println("Test : question = " + question + " dueDate = " + dueDate);
         cardService.updateCard(cardId, question, dueDate);
 
     }

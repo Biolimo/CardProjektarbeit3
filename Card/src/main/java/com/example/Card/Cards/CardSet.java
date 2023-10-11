@@ -24,9 +24,12 @@ public class CardSet {
     )
 
     private long id;
+    private String name;
     private LocalDate creationDate;
     private LocalDate dueDate;
 
+
+    //Code I copied to make error go away
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "cardSerId") // This is the foreign key in the Card table
     private List<Card> cards;
@@ -34,7 +37,8 @@ public class CardSet {
     public CardSet() {
     }
 
-    public CardSet(LocalDate creationDate, LocalDate dueDate, List<Card> cards) {
+    public CardSet(String name, LocalDate creationDate, LocalDate dueDate, List<Card> cards) {
+        this.name = name;
         this.creationDate = creationDate;
         this.dueDate = dueDate;
         this.cards = cards;
