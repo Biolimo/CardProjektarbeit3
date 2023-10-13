@@ -1,6 +1,7 @@
 package com.example.Card.CardSet;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -38,14 +39,13 @@ public class CardSet {
     public CardSet() {
     }
 
-    public CardSet(String name, LocalDate creationDate, LocalDate dueDate, List<Card> cards) {
+    public CardSet(String name, LocalDate dueDate) {
         this.name = name;
-        this.creationDate = creationDate;
+        this.creationDate = LocalDate.now();
         this.dueDate = dueDate;
-        this.cards = cards;
+        this.cards = new ArrayList<>();
     }
 
-    public void addCards(Card card, long cardid){
-        cards.add(card);
+    public void addCards(Card card) {
     }
 }

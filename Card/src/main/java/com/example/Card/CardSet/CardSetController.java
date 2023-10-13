@@ -3,6 +3,7 @@ package com.example.Card.CardSet;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import com.example.Card.Cards.*;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -38,5 +39,14 @@ public class CardSetController {
             @RequestParam(required = false) LocalDate dueDate){
         System.out.println("Test : name = " + name + "dueDate = " + dueDate);
         cardSetService.updateCardSet(cardSetId, name, dueDate);
+    }
+
+    @PostMapping(path = "addCard/{cardSetId}")
+    public void addCardToSet(
+            @PathVariable("cardSetId")Long cardSetId,
+            @RequestBody Card card
+    ){
+        System.out.println("the CardSetId is = " + cardSetId);
+        cardSetService.addCardToSet(cardSetId, card);
     }
 }

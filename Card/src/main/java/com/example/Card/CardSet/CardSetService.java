@@ -1,5 +1,6 @@
 package com.example.Card.CardSet;
 
+import com.example.Card.Cards.*;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -55,4 +56,10 @@ public class CardSetService {
         System.out.println("Test update CardSet last print");
     }
 
+    public void addCardToSet(Long cardSetId,Card card) {
+        CardSet cardSet = cardSetRepository.findById(cardSetId)
+                .orElseThrow(() -> new IllegalStateException(
+                "card with id " + cardSetId + "is not found"));
+        cardSet.addCards(card);
+    }
 }
