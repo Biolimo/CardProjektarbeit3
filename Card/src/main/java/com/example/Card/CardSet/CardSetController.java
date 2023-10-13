@@ -1,4 +1,4 @@
-package com.example.Card.Cards;
+package com.example.Card.CardSet;
 
 
 import org.springframework.beans.factory.annotation.Autowired;

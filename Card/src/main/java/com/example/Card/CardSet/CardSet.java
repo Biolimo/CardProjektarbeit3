@@ -1,9 +1,10 @@
-package com.example.Card.Cards;
+package com.example.Card.CardSet;
 
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Objects;
 
+import com.example.Card.Cards.Card;
 import jakarta.persistence.*;
 import lombok.Data;
 
