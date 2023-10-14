@@ -41,9 +41,9 @@ public class CardSetController {
         cardSetService.updateCardSet(cardSetId, name, dueDate);
     }
 
-    @PostMapping(path = "addCard/{cardSetId}")
+    @PostMapping(path = "{cardSetId}/card")
     public void addCardToSet(
-            @PathVariable("cardSetId")Long cardSetId,
+            @PathVariable("cardSetId") Long cardSetId,
             @RequestBody Card card
     ){
         System.out.println("the CardSetId is = " + cardSetId);

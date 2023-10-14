@@ -61,5 +61,6 @@ public class CardSetService {
                 .orElseThrow(() -> new IllegalStateException(
                 "card with id " + cardSetId + "is not found"));
         cardSet.addCards(card);
+        cardSetRepository.save(cardSet);
     }
 }

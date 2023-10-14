@@ -1,9 +1,7 @@
 package com.example.Card.CardSet;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 import com.example.Card.Cards.Card;
 import jakarta.persistence.*;
@@ -34,7 +32,7 @@ public class CardSet {
     //Code I copied to make error go away
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "cardSerId") // This is the foreign key in the Card table
-    private List<Card> cards;
+    private Set<Card> cards;
 
     public CardSet() {
     }
@@ -43,9 +41,10 @@ public class CardSet {
         this.name = name;
         this.creationDate = LocalDate.now();
         this.dueDate = dueDate;
-        this.cards = new ArrayList<>();
+        this.cards = new HashSet<>();
     }
 
     public void addCards(Card card) {
+        this.cards.add(card);
     }
 }

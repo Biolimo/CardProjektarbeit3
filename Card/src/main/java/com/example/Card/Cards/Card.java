@@ -4,10 +4,13 @@ import java.time.LocalDate;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+import org.hibernate.annotations.CreationTimestamp;
 
 @Data
 @Entity
 @Table
+@NoArgsConstructor
 public class Card {
     @Id
     @SequenceGenerator(
@@ -20,18 +23,14 @@ public class Card {
             generator = "card_sequence"
     )
     private long id;
-    private LocalDate creationDate;
+
+    private LocalDate creationDate = LocalDate.now();
     private LocalDate dueDate;
-    private int successCounter;
-    private boolean isDrafted;
+    private int successCounter = 0;
+    private boolean isDrafted = false;
     private String question;
 
-    public Card() {
-    }
     public Card(LocalDate dueDate, String question) {
-        this.creationDate = LocalDate.now();
-        this.successCounter = 0;
-        this.isDrafted = false;
         this.question = question;
         this.dueDate = dueDate;
     }
