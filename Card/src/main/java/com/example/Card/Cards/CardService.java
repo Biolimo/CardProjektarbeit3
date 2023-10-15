@@ -28,7 +28,7 @@ public class CardService {
     public void addNewCard(Card card) {
         Optional<Card> cardByQuestion = cardRepository.findCardByQuestion(card.getQuestion());
         if(cardByQuestion.isPresent()){
-            throw new IllegalStateException("Card already exists ID = " + cardByQuestion.get().getId());
+            throw new IllegalStateException("Question already exists CardID = " + cardByQuestion.get().getId());
         }
         cardRepository.save(card);
     }
@@ -85,7 +85,6 @@ public class CardService {
                     } catch (NumberFormatException e) {
                         // Handle Ausnahmefall, falls das Parsen fehlschlägt
                         System.out.println("Ungültige Zahl: " + answerCast[i]);
-                        // Du kannst hier eine alternative Logik implementieren oder die Ausnahme werfen, je nach Bedarf
                     }
                 }
                 userAwnserWas = muSeCard.checkUserAnswer(answerIntCast, muSeCard);
