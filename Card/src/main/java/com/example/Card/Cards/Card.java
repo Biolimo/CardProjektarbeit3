@@ -5,7 +5,6 @@ import java.time.LocalDate;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.CreationTimestamp;
 
 @Data
 @Entity
@@ -30,8 +29,15 @@ public class Card {
     private boolean isDrafted = false;
     private String question;
 
+    @Column(name = "dtype", insertable = false, updatable = false)
+    private String dType;
+
     public Card(LocalDate dueDate, String question) {
         this.question = question;
         this.dueDate = dueDate;
+    }
+    public boolean checkUserAnswer(Object one, Object two){
+        System.out.println("das nicht richtig");
+        return false;
     }
 }

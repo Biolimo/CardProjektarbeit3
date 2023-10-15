@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Objects;
 
 
 @RestController
@@ -63,7 +64,7 @@ public class CardController {
     }
 
     //Method to change Cards
-    @PutMapping(path = "{cardId}")
+    @PutMapping(path = "{cardId}/update")
     public void updateCard(
             @PathVariable("cardId")Long cardId,
             @RequestParam(required = false) String question,
@@ -71,6 +72,15 @@ public class CardController {
         System.out.println("Test : question = " + question + " dueDate = " + dueDate);
         cardService.updateCard(cardId, question, dueDate);
 
+    }
+
+    @PutMapping(path = "{cardId}/answer")
+    public boolean checkUserAnswer(
+            @PathVariable("cardId")Long cardId,
+            @RequestBody String answer)
+    {
+        System.out.println("Test : question = " + answer);
+        return cardService.checkUserAnswer(cardId, answer);
     }
 
 }
