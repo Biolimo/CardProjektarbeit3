@@ -2,7 +2,6 @@ package com.example.Card.Cards.KinderKarten;
 
 import com.example.Card.Cards.Card;
 import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
