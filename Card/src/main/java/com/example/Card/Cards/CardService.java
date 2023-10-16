@@ -47,18 +47,16 @@ public class CardService {
 
     //This code changes a card by its ID. If the ID is not found, it throws an exception.
     @Transactional
-    public void updateCard(Long cardId,
-                           String question,
-                           LocalDate dueDate){
+    public void updateCard(Long cardId, UpdateInformation updateInformation){
         Card card = cardRepository.findById(cardId)
                 .orElseThrow(() -> new IllegalStateException(
                         "card with id " + cardId + "is not found"));
 
-        if(question != null){
-            card.setQuestion(question);
+        if(updateInformation.getQuestion() != null){
+            card.setQuestion(updateInformation.question);
         }
-        if(dueDate != null){
-            card.setDueDate(dueDate);
+        if(updateInformation.getDueDate() != null){
+            card.setDueDate(updateInformation.getDueDate());
         }
         System.out.println("Test update Card last print");
     }

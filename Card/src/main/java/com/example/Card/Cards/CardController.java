@@ -64,14 +64,12 @@ public class CardController {
     }
 
     //Method to change Cards
-    @PutMapping(path = "{cardId}/update")
+    @PostMapping(path = "{cardId}/update")
     public void updateCard(
             @PathVariable("cardId")Long cardId,
-            @RequestParam(required = false) String question,
-            @RequestParam(required = false) LocalDate dueDate){
-        System.out.println("Test : question = " + question + " dueDate = " + dueDate);
-        cardService.updateCard(cardId, question, dueDate);
+            @RequestBody UpdateInformation updateInformation){
 
+        cardService.updateCard(cardId, updateInformation);
     }
 
     @PutMapping(path = "{cardId}/answer")

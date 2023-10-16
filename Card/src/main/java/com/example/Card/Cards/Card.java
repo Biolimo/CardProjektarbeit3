@@ -23,11 +23,11 @@ public class Card {
     )
     private long id;
 
-    private LocalDate creationDate = LocalDate.now();
     private LocalDate dueDate;
+    private String question;
+    private LocalDate creationDate = LocalDate.now();
     private int successCounter = 0;
     private boolean isDrafted = false;
-    private String question;
 
     @Column(name = "dtype", insertable = false, updatable = false)
     private String dType;
