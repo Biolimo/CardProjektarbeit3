@@ -88,7 +88,35 @@ public class CardSetService {
 
         // Return the question of the due card, or a message if no due card is found
         if (dueCard != null) {
-            questionAndId = new QuestionAndId(dueCard.getQuestion(),dueCard.getId());
+            questionAndId = new QuestionAndId(dueCard.getQuestion(),dueCard.getId(), dueCard.getDType());
+        } else {
+            questionAndId = new QuestionAndId("No due card found for the specified card set ID.");
+        }
+        return questionAndId;
+    }
+
+    public QuestionAndId getQuestionFromCardSetByRandom(Long cardSetId) {
+
+        CardSet cardSet = cardSetRepository.getReferenceById(cardSetId);
+        QuestionAndId questionAndId;
+
+        cardSet.getCards()
+        return null;
+    }
+
+    public QuestionAndId getQuestionFromCardSetBySuccessCount(Long cardSetId) {
+
+        CardSet cardSet = cardSetRepository.getReferenceById(cardSetId);
+        QuestionAndId questionAndId;
+
+        List<Card> cards = new ArrayList<>(cardSet.getCards());
+        cards.sort(Comparator.comparing(Card::getSuccessCounter));
+
+        Card dueCard = cards.stream()
+                .findFirst()
+                .orElse(null);;
+        if (dueCard != null) {
+            questionAndId = new QuestionAndId(dueCard.getQuestion(),dueCard.getId(), dueCard.getDType());
         } else {
             questionAndId = new QuestionAndId("No due card found for the specified card set ID.");
         }

@@ -87,14 +87,15 @@ public class CardSetController {
     }
 
     @PutMapping("{cardSetId}/answerRandomCard")
-    public String answerRandomCard(
+    public QuestionAndId answerRandomCard(
             @PathVariable("cardSetId") Long cardSetId){
-        return null;
+        return cardSetService.getQuestionFromCardSetByRandom(cardSetId);
     }
 
     @PutMapping("{cardSetId}/answerLowSuccesscountCard")
-    public String answerLowSuccesscountCard(
+    public QuestionAndId answerLowSuccessCountCard(
             @PathVariable("cardSetId") Long cardSetId){
-        return null;
+        return cardSetService.getQuestionFromCardSetBySuccessCount(cardSetId);
     }
+
 }
