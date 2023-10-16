@@ -103,7 +103,7 @@ public class CardService {
                     cardRepository.save(numberCard);
                 }
                 return userAwnserWas;
-            case "SiseCard":
+            case "SiSeCard":
                 SiSeCard siSeCard = (SiSeCard) card;
                 int answerSiSeCard = 0;
                 try {
