@@ -50,9 +50,6 @@ public class CardSetService {
         if(name != null){
             cardSet.setName(name);
         }
-        if(dueDate != null){
-            cardSet.setDueDate(dueDate);
-        }
         System.out.println("Test update CardSet last print");
     }
 

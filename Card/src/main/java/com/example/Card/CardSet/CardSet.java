@@ -6,10 +6,12 @@ import java.util.*;
 import com.example.Card.Cards.Card;
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
 @Entity
 @Table
+@NoArgsConstructor
 public class CardSet {
 
     @Id
@@ -25,8 +27,6 @@ public class CardSet {
 
     private long id;
     private String name;
-    private LocalDate creationDate;
-    private LocalDate dueDate;
 
 
     //Code I copied to make error go away
@@ -34,14 +34,9 @@ public class CardSet {
     @JoinColumn(name = "cardSerId") // This is the foreign key in the Card table
     private Set<Card> cards;
 
-    public CardSet() {
-    }
 
-    public CardSet(String name, LocalDate dueDate) {
+    public CardSet(String name) {
         this.name = name;
-        this.creationDate = LocalDate.now();
-        this.dueDate = dueDate;
-        this.cards = new HashSet<>();
     }
 
     public void addCards(Card card) {

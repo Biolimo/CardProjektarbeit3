@@ -14,12 +14,10 @@ public class CardSetConfig {
     CommandLineRunner commandLineRunner2(CardSetRepository repository){
         return args -> {
             CardSet cardSet1 = new CardSet(
-                    "Erstes Cardset",
-                    LocalDate.of(2024,3,30)
+                    "Erstes Cardset"
             );
             CardSet cardSet2 = new CardSet(
-                    "Zweites Cardset",
-                    LocalDate.of(2025,3,30)
+                    "Zweites Cardset"
             );
             repository.saveAll(
                     List.of(cardSet1,cardSet2)
