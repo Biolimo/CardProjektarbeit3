@@ -1,6 +1,8 @@
 package com.example.Card.Cards;
 
 import com.example.Card.Cards.KinderKarten.*;
+import com.example.Card.Cards.KinderKarten.NumberKinder.DoubleCard;
+import com.example.Card.Cards.KinderKarten.NumberKinder.LongCard;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -40,8 +42,18 @@ public class CardController {
 
     //Adds a NumberCard
     @PostMapping("NumberCard")
-    public void addNewNumberCard(@RequestBody NumberCard NumberCard){
-        cardService.addNewCard(NumberCard);
+    public void addNewNumberCard(@RequestBody NumberCard numberCard){
+        cardService.addNewCard(numberCard);
+    }
+
+    @PostMapping("DoubleCard")
+    public void addNewDoubleCard(@RequestBody DoubleCard doubleCard){
+        cardService.addNewCard(doubleCard);
+    }
+
+    @PostMapping("LongCard")
+    public void addNewLongCard(@RequestBody LongCard longCard){
+        cardService.addNewCard(longCard);
     }
 
     //Adds a SiSeCard
