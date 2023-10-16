@@ -6,10 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 public class CardSetService {
@@ -98,10 +95,24 @@ public class CardSetService {
     public QuestionAndId getQuestionFromCardSetByRandom(Long cardSetId) {
 
         CardSet cardSet = cardSetRepository.getReferenceById(cardSetId);
-        QuestionAndId questionAndId;
+        QuestionAndId questionAndId = null;
 
-        cardSet.getCards()
-        return null;
+        List<Card> cards = new ArrayList<>(cardSet.getCards());
+
+        if (!cards.isEmpty()) {
+            // Generate a random index within the size of the list
+            Random random = new Random();
+            int randomIndex = random.nextInt(cards.size());
+
+            // Retrieve and return the random card
+            Card dueCard = cards.get(randomIndex);
+            if (dueCard != null) {
+                questionAndId = new QuestionAndId(dueCard.getQuestion(),dueCard.getId(), dueCard.getDType());
+            } else {
+                questionAndId = new QuestionAndId("No due card found for the specified card set ID.");
+            }
+        }
+        return questionAndId;
     }
 
     public QuestionAndId getQuestionFromCardSetBySuccessCount(Long cardSetId) {
@@ -114,7 +125,7 @@ public class CardSetService {
 
         Card dueCard = cards.stream()
                 .findFirst()
-                .orElse(null);;
+                .orElse(null);
         if (dueCard != null) {
             questionAndId = new QuestionAndId(dueCard.getQuestion(),dueCard.getId(), dueCard.getDType());
         } else {
