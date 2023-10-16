@@ -67,9 +67,10 @@ public class CardSetService {
     }
 
     //Get a Question from a CardSet
-    public String getQuestionFromCardSetByDueDate(Long cardSetId) {
+    public QuestionAndId getQuestionFromCardSetByDueDate(Long cardSetId) {
 
         CardSet cardSet = cardSetRepository.getReferenceById(cardSetId);
+        QuestionAndId questionAndId;
 
         // Get the list of cards from the card set
         List<Card> cards = new ArrayList<>(cardSet.getCards());
@@ -84,11 +85,13 @@ public class CardSetService {
                 .findFirst()
                 .orElse(null);
 
+
         // Return the question of the due card, or a message if no due card is found
         if (dueCard != null) {
-            return dueCard.getQuestion();
+            questionAndId = new QuestionAndId(dueCard.getQuestion(),dueCard.getId());
         } else {
-            return "No due card found for the specified card set ID.";
+            questionAndId = new QuestionAndId("No due card found for the specified card set ID.");
         }
+        return questionAndId;
     }
 }

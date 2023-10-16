@@ -11,6 +11,5 @@ import java.time.LocalDate;
 public class UpdateInformation {
 
     String question;
-    LocalDate dueDate;
 
 }

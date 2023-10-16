@@ -56,9 +56,6 @@ public class CardService {
         if(updateInformation.getQuestion() != null){
             card.setQuestion(updateInformation.question);
         }
-        if(updateInformation.getDueDate() != null){
-            card.setDueDate(updateInformation.getDueDate());
-        }
         System.out.println("Test update Card last print");
     }
 

@@ -10,7 +10,6 @@ import java.util.List;
 @RequestMapping("/cardSet")
 public class CardSetController {
 
-
     private final CardSetService cardSetService;
     @Autowired
     public CardSetController(CardSetService cardSetService) {
@@ -82,7 +81,7 @@ public class CardSetController {
 
     //get A question from a CardSet
     @PutMapping("{cardSetId}/answerDueCard")
-    public String answerDueCard(
+    public QuestionAndId answerDueCard(
             @PathVariable("cardSetId") Long cardSetId){
         return cardSetService.getQuestionFromCardSetByDueDate(cardSetId);
     }
