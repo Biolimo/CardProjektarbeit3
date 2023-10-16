@@ -30,6 +30,7 @@ public class CardService {
         if(cardByQuestion.isPresent()){
             throw new IllegalStateException("Question already exists CardID = " + cardByQuestion.get().getId());
         }
+        System.out.println("Karte wurde Gespeichert");
         cardRepository.save(card);
     }
 
