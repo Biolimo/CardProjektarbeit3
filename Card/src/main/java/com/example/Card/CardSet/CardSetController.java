@@ -4,9 +4,7 @@ package com.example.Card.CardSet;
 import com.example.Card.Cards.KinderKarten.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import com.example.Card.Cards.*;
 
-import java.time.LocalDate;
 import java.util.List;
 @RestController
 @RequestMapping("/cardSet")
@@ -79,5 +77,25 @@ public class CardSetController {
     ){
         System.out.println("the CardSetId is = " + cardSetId);
         cardSetService.addCardToSet(cardSetId, card);
+    }
+
+
+    //get A question from a CardSet
+    @PutMapping("{cardSetId}/answerDueCard")
+    public String answerDueCard(
+            @PathVariable("cardSetId") Long cardSetId){
+        return cardSetService.getQuestionFromCardSetByDueDate(cardSetId);
+    }
+
+    @PutMapping("{cardSetId}/answerRandomCard")
+    public String answerRandomCard(
+            @PathVariable("cardSetId") Long cardSetId){
+        return null;
+    }
+
+    @PutMapping("{cardSetId}/answerLowSuccesscountCard")
+    public String answerLowSuccesscountCard(
+            @PathVariable("cardSetId") Long cardSetId){
+        return null;
     }
 }
