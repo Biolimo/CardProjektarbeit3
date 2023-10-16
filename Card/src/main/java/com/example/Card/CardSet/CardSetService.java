@@ -5,7 +5,6 @@ import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -42,8 +41,7 @@ public class CardSetService {
     @Transactional
     public void updateCardSet(
             long cardSetId,
-            String name,
-            LocalDate dueDate){
+            String name){
         CardSet cardSet = cardSetRepository.findById(cardSetId).orElseThrow(() -> new IllegalStateException(
                 "card with id " + cardSetId + "is not found"));
 

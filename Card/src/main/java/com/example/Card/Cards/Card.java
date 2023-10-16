@@ -23,8 +23,8 @@ public class Card {
     )
     private long id;
 
-    private LocalDate dueDate;
     private String question;
+    private LocalDate dueDate = LocalDate.now();
     private LocalDate creationDate = LocalDate.now();
     private int successCounter = 0;
     private boolean isDrafted = false;
@@ -32,9 +32,8 @@ public class Card {
     @Column(name = "dtype", insertable = false, updatable = false)
     private String dType;
 
-    public Card(LocalDate dueDate, String question) {
+    public Card(String question) {
         this.question = question;
-        this.dueDate = dueDate;
     }
     public boolean checkUserAnswer(Object one, Object two){
         System.out.println("das nicht richtig");

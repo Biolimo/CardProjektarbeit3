@@ -15,11 +15,9 @@ public class CardConfig {
     CommandLineRunner commandLineRunner(CardRepository repository){
         return args -> {
             Card test1 = new Card(
-                    LocalDate.of(2023, 3,25),
                     "Question"
             );
             Card test2 = new Card(
-                    LocalDate.of(2003, 6,25),
                     "Question2"
             );
 
