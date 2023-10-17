@@ -8,7 +8,6 @@ import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.sql.SQLOutput;
 import java.util.List;
 import java.util.Optional;
 
@@ -122,7 +121,7 @@ public class CardService {
                 return userAwnserWas;
             case "LongCard":
                 LongCard longCard = (LongCard) card;
-                Long answerLongCard = 0L;
+                long answerLongCard = 0L;
                 try {
                     answerLongCard = Long.parseLong(answer);
                 } catch (NumberFormatException e) {
