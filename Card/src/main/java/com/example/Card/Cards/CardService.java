@@ -8,6 +8,7 @@ import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.sql.SQLOutput;
 import java.util.List;
 import java.util.Optional;
 
@@ -27,23 +28,26 @@ public class CardService {
 
 
     //adds new cards to the database. If a question already exists in the database, it raises an exception and provides the ID of the existing card.
-    public void addNewCard(Card card) {
+    public Card addNewCard(Card card) {
         Optional<Card> cardByQuestion = cardRepository.findCardByQuestion(card.getQuestion());
         if(cardByQuestion.isPresent()){
             throw new IllegalStateException("Question already exists CardID = " + cardByQuestion.get().getId());
         }
         cardRepository.save(card);
+
         System.out.println("Karte wurde Gespeichert mit ID = " + card.getId());
+        return card;
     }
 
 
     //This code deletes a card by its ID. If the ID is not found, it throws an exception.
-    public void deleteCard(Long cardId) {
+    public String deleteCard(Long cardId) {
         boolean exists = cardRepository.existsById(cardId);
         if(!exists){
-            throw new IllegalStateException("card with id " + cardId + "is not found");
+            throw new IllegalStateException("card with id = " + cardId + " is not found");
         }
         cardRepository.deleteById(cardId);
+        return "Card with ID " + cardId + " has been successfully deleted.";
 
     }
 

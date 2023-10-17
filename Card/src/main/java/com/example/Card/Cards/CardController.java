@@ -27,51 +27,47 @@ public class CardController {
 
     //Post Methods for all Cards
 
-    //Adds a normal Card
-    @PostMapping("Card")
-    public void addNewCard(@RequestBody Card card){
-        cardService.addNewCard(card);
-    }
-
     //Adds a TextCard
     @PostMapping("TextCard")
-    public void addNewTextCard(@RequestBody TextCard textCard){
-        cardService.addNewCard(textCard);
+    public TextCard addNewTextCard(@RequestBody TextCard textCard){
+        return (TextCard) cardService.addNewCard(textCard);
     }
 
     //Adds a NumberCard
     @PostMapping("IntCard")
-    public void addNewNumberCard(@RequestBody IntCard intCard){
-        cardService.addNewCard(intCard);
+    public IntCard addNewNumberCard(@RequestBody IntCard intCard){
+        return (IntCard) cardService.addNewCard(intCard);
     }
 
+    //Adds a DoubleCard
     @PostMapping("DoubleCard")
-    public void addNewDoubleCard(@RequestBody DoubleCard doubleCard){
-        cardService.addNewCard(doubleCard);
+    public DoubleCard addNewDoubleCard(@RequestBody DoubleCard doubleCard){
+        return (DoubleCard) cardService.addNewCard(doubleCard);
     }
 
+    //Adds a LongCard
     @PostMapping("LongCard")
-    public void addNewLongCard(@RequestBody LongCard longCard){
-        cardService.addNewCard(longCard);
+    public LongCard addNewLongCard(@RequestBody LongCard longCard){
+        return (LongCard) cardService.addNewCard(longCard);
     }
 
     //Adds a SiSeCard
     @PostMapping("SiSeCard")
-    public void addNewSiSeCard(@RequestBody SiSeCard siSeCard){
-        cardService.addNewCard(siSeCard);
+    public SiSeCard addNewSiSeCard(@RequestBody SiSeCard siSeCard){
+        return (SiSeCard) cardService.addNewCard(siSeCard);
     }
 
     //Adds a MuSeCard
     @PostMapping("MuSeCard")
-    public void addNewMuSeCard(@RequestBody MuSeCard muSeCard){
-        cardService.addNewCard(muSeCard);
+    public MuSeCard addNewMuSeCard(@RequestBody MuSeCard muSeCard){
+        return (MuSeCard) cardService.addNewCard(muSeCard);
     }
 
 
     //Method to delete Cards
     @DeleteMapping(path = "{cardId}")
-    public void deleteCard(@PathVariable("cardId") Long cardId){
-        cardService.deleteCard(cardId);
+    public String deleteCard(@PathVariable("cardId") Long cardId){
+        return cardService.deleteCard(cardId);
     }
 
     //Method to change Cards
