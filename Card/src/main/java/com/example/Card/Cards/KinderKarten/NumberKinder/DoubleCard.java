@@ -1,5 +1,6 @@
 package com.example.Card.Cards.KinderKarten.NumberKinder;
 
+import com.example.Card.Cards.DueDateManager;
 import com.example.Card.Cards.KinderKarten.NumberCard;
 import jakarta.persistence.Entity;
 import lombok.Data;
@@ -16,7 +17,9 @@ public class DoubleCard extends NumberCard {
     private double answer;
 
     public boolean checkUserAnswer(double userAnswer, DoubleCard doubleCard){
-        if(userAnswer == doubleCard.getAnswer()) doubleCard.setSuccessCounter(doubleCard.getSuccessCounter()+1);
+        if(userAnswer == doubleCard.getAnswer()){
+            doubleCard.setSuccessCounter(doubleCard.getSuccessCounter()+1);
+        }
         return userAnswer == doubleCard.getAnswer();
     }
 

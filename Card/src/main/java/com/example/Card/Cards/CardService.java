@@ -14,12 +14,15 @@ import java.util.Optional;
 @Service
 public class CardService {
 
+    private final DueDateManager dueDateManager;
     private final CardRepository cardRepository;
 
     @Autowired
-    public CardService(CardRepository cardRepository) {
+    public CardService(DueDateManager dueDateManager, CardRepository cardRepository) {
+        this.dueDateManager = dueDateManager;
         this.cardRepository = cardRepository;
     }
+
 
     public List<Card> getCard(){
         return cardRepository.findAll();
@@ -71,7 +74,7 @@ public class CardService {
                 .orElseThrow(() -> new IllegalStateException(
                         "card with id " + cardId + "is not found"));
 
-        boolean userAnswerWas;
+        boolean userAnswerWas = false;
 
         switch (card.getDType()) {
             case "MuSeCard":
@@ -92,7 +95,7 @@ public class CardService {
                 if(userAnswerWas){
                     cardRepository.save(muSeCard);
                 }
-                return userAnswerWas;
+                break;
             case "IntCard":
                 IntCard intCard = (IntCard) card;
                 int answerNumberCard = 0;
@@ -105,7 +108,7 @@ public class CardService {
                 if(userAnswerWas){
                     cardRepository.save(intCard);
                 }
-                return userAnswerWas;
+                break;
             case "DoubleCard":
                 DoubleCard doubleCard = (DoubleCard) card;
                 double answerDoubleCard = 0;
@@ -118,7 +121,7 @@ public class CardService {
                 if(userAnswerWas){
                     cardRepository.save(doubleCard);
                 }
-                return userAnswerWas;
+                break;
             case "LongCard":
                 LongCard longCard = (LongCard) card;
                 long answerLongCard = 0L;
@@ -131,7 +134,7 @@ public class CardService {
                 if(userAnswerWas){
                     cardRepository.save(longCard);
                 }
-                return userAnswerWas;
+                break;
             case "SiSeCard":
                 SiSeCard siSeCard = (SiSeCard) card;
                 int answerSiSeCard = 0;
@@ -144,19 +147,24 @@ public class CardService {
                 if(userAnswerWas){
                     cardRepository.save(siSeCard);
                 }
-                return userAnswerWas;
+                break;
             case "TextCard":
                 TextCard textCard = (TextCard) card;
                 userAnswerWas = textCard.checkUserAnswer(answer,textCard);
                 if(userAnswerWas){
                     cardRepository.save(textCard);
                 }
-                return userAnswerWas;
+                break;
             default:
                 // Handle the case when the card type is not recognized
                 System.out.println("Unknown card type: " + card.getDType());
                 // You can return an error message or throw an exception depending on your needs
                 break;
+        }
+        if(userAnswerWas){
+            dueDateManager.updateDueDate(card);
+            cardRepository.save(card);
+            return true;
         }
         return false;
     }
