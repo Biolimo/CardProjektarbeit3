@@ -1,6 +1,5 @@
 package com.example.Card.CardSet;
 
-import java.time.LocalDate;
 import java.util.*;
 
 import com.example.Card.Cards.Card;
@@ -31,7 +30,7 @@ public class CardSet {
 
     //Code I copied to make error go away
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinColumn(name = "cardSerId") // This is the foreign key in the Card table
+    @JoinColumn(name = "cardSetId") // This is the foreign key in the Card table
     private Set<Card> cards;
 
 

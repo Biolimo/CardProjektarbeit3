@@ -1,7 +1,6 @@
 package com.example.Card.Cards.KinderKarten;
 
 import com.example.Card.Cards.Card;
-import com.example.Card.Cards.DueDateManager;
 import jakarta.persistence.Entity;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
