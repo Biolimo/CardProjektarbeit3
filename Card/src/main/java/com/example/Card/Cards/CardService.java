@@ -35,7 +35,7 @@ public class CardService {
         }
         cardRepository.save(card);
 
-        System.out.println("Karte wurde Gespeichert mit ID = " + card.getId());
+        System.out.println("Card with ID " + card.getId() + " has been successfully created.");
         return card;
     }
 
@@ -54,7 +54,7 @@ public class CardService {
 
     //This code changes a card by its ID. If the ID is not found, it throws an exception.
     @Transactional
-    public void updateCard(Long cardId, UpdateInformation updateInformation){
+    public String updateCard(Long cardId, UpdateInformation updateInformation){
         Card card = cardRepository.findById(cardId)
                 .orElseThrow(() -> new IllegalStateException(
                         "card with id " + cardId + "is not found"));
@@ -62,7 +62,7 @@ public class CardService {
         if(updateInformation.getQuestion() != null){
             card.setQuestion(updateInformation.question);
         }
-        System.out.println("Test update Card last print");
+        return "Card with ID " + cardId + " has been successfully updated.";
     }
 
     //This method checks what kind of card is given and checks the User Answer in the right class

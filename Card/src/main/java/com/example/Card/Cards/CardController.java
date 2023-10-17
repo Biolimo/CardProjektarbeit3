@@ -72,11 +72,11 @@ public class CardController {
 
     //Method to change Cards
     @PostMapping(path = "{cardId}/update")
-    public void updateCard(
+    public String updateCard(
             @PathVariable("cardId")Long cardId,
             @RequestBody UpdateInformation updateInformation){
 
-        cardService.updateCard(cardId, updateInformation);
+        return cardService.updateCard(cardId, updateInformation);
     }
 
     @PutMapping(path = "{cardId}/answer")
