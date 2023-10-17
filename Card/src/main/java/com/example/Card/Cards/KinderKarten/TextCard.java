@@ -3,9 +3,11 @@ package com.example.Card.Cards.KinderKarten;
 import com.example.Card.Cards.Card;
 import jakarta.persistence.Entity;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 import java.util.Objects;
+@EqualsAndHashCode(callSuper = true)
 @Data
 @Entity
 @NoArgsConstructor

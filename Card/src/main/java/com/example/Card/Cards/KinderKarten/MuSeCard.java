@@ -1,15 +1,14 @@
 package com.example.Card.Cards.KinderKarten;
 
 import com.example.Card.Cards.Card;
-import com.example.Card.Cards.CardRepository;
-import com.example.Card.Cards.CardService;
 import jakarta.persistence.Entity;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.Arrays;
 
+@EqualsAndHashCode(callSuper = true)
 @Data
 @Entity
 @NoArgsConstructor
