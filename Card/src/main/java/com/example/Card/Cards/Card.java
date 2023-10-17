@@ -29,9 +29,6 @@ public class Card {
     private int successCounter = 0;
     private boolean isDrafted = false;
 
-    @Column(name = "dtype", insertable = false, updatable = false)
-    private String dType;
-
     public Card(String question) {
         this.question = question;
     }
