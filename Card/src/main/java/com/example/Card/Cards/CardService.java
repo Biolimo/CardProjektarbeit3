@@ -71,7 +71,7 @@ public class CardService {
                 .orElseThrow(() -> new IllegalStateException(
                         "card with id " + cardId + "is not found"));
 
-        boolean userAwnserWas;
+        boolean userAnswerWas;
 
         switch (card.getDType()) {
             case "MuSeCard":
@@ -88,11 +88,11 @@ public class CardService {
                         System.out.println("Ungültige Zahl: " + answerCast[i]);
                     }
                 }
-                userAwnserWas = muSeCard.checkUserAnswer(answerIntCast, muSeCard);
-                if(userAwnserWas){
+                userAnswerWas = muSeCard.checkUserAnswer(answerIntCast, muSeCard);
+                if(userAnswerWas){
                     cardRepository.save(muSeCard);
                 }
-                return userAwnserWas;
+                return userAnswerWas;
             case "IntCard":
                 IntCard intCard = (IntCard) card;
                 int answerNumberCard = 0;
@@ -101,11 +101,11 @@ public class CardService {
                 } catch (NumberFormatException e) {
                     System.out.println("Ungültige Zahl");
                 }
-                userAwnserWas = intCard.checkUserAnswer(answerNumberCard, intCard);
-                if(userAwnserWas){
+                userAnswerWas = intCard.checkUserAnswer(answerNumberCard, intCard);
+                if(userAnswerWas){
                     cardRepository.save(intCard);
                 }
-                return userAwnserWas;
+                return userAnswerWas;
             case "DoubleCard":
                 DoubleCard doubleCard = (DoubleCard) card;
                 double answerDoubleCard = 0;
@@ -114,11 +114,11 @@ public class CardService {
                 } catch (NumberFormatException e) {
                     System.out.println("Ungültige Zahl");
                 }
-                userAwnserWas = doubleCard.checkUserAnswer(answerDoubleCard, doubleCard);
-                if(userAwnserWas){
+                userAnswerWas = doubleCard.checkUserAnswer(answerDoubleCard, doubleCard);
+                if(userAnswerWas){
                     cardRepository.save(doubleCard);
                 }
-                return userAwnserWas;
+                return userAnswerWas;
             case "LongCard":
                 LongCard longCard = (LongCard) card;
                 long answerLongCard = 0L;
@@ -127,11 +127,11 @@ public class CardService {
                 } catch (NumberFormatException e) {
                     System.out.println("Ungültige Zahl");
                 }
-                userAwnserWas = longCard.checkUserAnswer(answerLongCard, longCard);
-                if(userAwnserWas){
+                userAnswerWas = longCard.checkUserAnswer(answerLongCard, longCard);
+                if(userAnswerWas){
                     cardRepository.save(longCard);
                 }
-                return userAwnserWas;
+                return userAnswerWas;
             case "SiSeCard":
                 SiSeCard siSeCard = (SiSeCard) card;
                 int answerSiSeCard = 0;
@@ -140,18 +140,18 @@ public class CardService {
                 } catch (NumberFormatException e) {
                     System.out.println("Ungültige Zahl");
                 }
-                userAwnserWas = siSeCard.checkUserAnswer(answerSiSeCard, siSeCard);
-                if(userAwnserWas){
+                userAnswerWas = siSeCard.checkUserAnswer(answerSiSeCard, siSeCard);
+                if(userAnswerWas){
                     cardRepository.save(siSeCard);
                 }
-                return userAwnserWas;
+                return userAnswerWas;
             case "TextCard":
                 TextCard textCard = (TextCard) card;
-                userAwnserWas = textCard.checkUserAnswer(answer,textCard);
-                if(userAwnserWas){
+                userAnswerWas = textCard.checkUserAnswer(answer,textCard);
+                if(userAnswerWas){
                     cardRepository.save(textCard);
                 }
-                return userAwnserWas;
+                return userAnswerWas;
             default:
                 // Handle the case when the card type is not recognized
                 System.out.println("Unknown card type: " + card.getDType());
