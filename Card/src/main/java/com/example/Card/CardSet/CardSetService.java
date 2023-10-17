@@ -23,26 +23,28 @@ public class CardSetService {
     }
 
     //Adds a new CardSet
-    public void addNewCardSet(CardSet cardSet){
+    public CardSet addNewCardSet(CardSet cardSet){
         Optional<CardSet> cardSetByName = cardSetRepository.findCardSetByName(cardSet.getName());
         if(cardSetByName.isPresent()){
             throw new IllegalStateException("CardSet already exists ID = " + cardSetByName.get().getId());
         }
         cardSetRepository.save(cardSet);
+        return cardSet;
     }
 
     //Delete a CardSet
-    public void deleteCard(Long cardSetId){
+    public String deleteCard(Long cardSetId){
         boolean exists = cardSetRepository.existsById(cardSetId);
         if(!exists){
             throw new IllegalStateException("cardSet with id " + cardSetId + "is not found");
         }
         cardSetRepository.deleteById(cardSetId);
+        return "CardSet with ID " + cardSetId + " has been successfully deleted.";
     }
 
     //Update a CardSet name
     @Transactional
-    public void updateCardSet(
+    public String updateCardSet(
             long cardSetId,
             String name){
         CardSet cardSet = cardSetRepository.findById(cardSetId).orElseThrow(() -> new IllegalStateException(
@@ -51,16 +53,17 @@ public class CardSetService {
         if(name != null){
             cardSet.setName(name);
         }
-        System.out.println("Test update CardSet last print");
+        return "CardSet with ID " + cardSetId + " has been successfully updated.";
     }
 
     //Add a Card to a Set
-    public void addCardToSet(Long cardSetId,Card card) {
+    public Card addCardToSet(Long cardSetId,Card card) {
         CardSet cardSet = cardSetRepository.findById(cardSetId)
                 .orElseThrow(() -> new IllegalStateException(
                 "card with id " + cardSetId + "is not found"));
         cardSet.addCards(card);
         cardSetRepository.save(cardSet);
+        return card;
     }
 
     //Get a Question from a CardSet

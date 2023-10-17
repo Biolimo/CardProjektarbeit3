@@ -1,8 +1,11 @@
 package com.example.Card.CardSet;
 
 
+import com.example.Card.Cards.Card;
 import com.example.Card.Cards.KinderKarten.*;
+import com.example.Card.Cards.KinderKarten.NumberKinder.DoubleCard;
 import com.example.Card.Cards.KinderKarten.NumberKinder.IntCard;
+import com.example.Card.Cards.KinderKarten.NumberKinder.LongCard;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -25,58 +28,73 @@ public class CardSetController {
 
     //Adds a new CardSet
     @PostMapping
-    public void addNewCardSet(@RequestBody CardSet cardSet){
-        cardSetService.addNewCardSet(cardSet);
+    public CardSet addNewCardSet(@RequestBody CardSet cardSet){
+        return cardSetService.addNewCardSet(cardSet);
     }
 
     //Delete a CardSet
     @DeleteMapping(path = "{cardSetId}")
-    public void deleteCardSet(@PathVariable("cardSetId") Long cardSetId){
-        cardSetService.deleteCard(cardSetId);
+    public String deleteCardSet(@PathVariable("cardSetId") Long cardSetId){
+        return cardSetService.deleteCard(cardSetId);
     }
 
     //Updates a CardSet
     @PostMapping(path = "{cardSetId}")
-    public void updateCardSet(
+    public String updateCardSet(
             @PathVariable("cardSetId")Long cardSetId,
             @RequestBody String name){
-        System.out.println("Test : name = " + name);
-        cardSetService.updateCardSet(cardSetId, name);
+        return cardSetService.updateCardSet(cardSetId, name);
     }
 
 
     //Add the different Cards to the set.
     @PostMapping(path = "{cardSetId}/TextCard")
-    public void addTextCardToSet(
+    public Card addTextCardToSet(
             @PathVariable("cardSetId") Long cardSetId,
             @RequestBody TextCard card
     ){
         System.out.println("the CardSetId is = " + cardSetId);
-        cardSetService.addCardToSet(cardSetId, card);
+        return cardSetService.addCardToSet(cardSetId, card);
     }
-    @PostMapping(path = "{cardSetId}/NumberCard")
-    public void addNumberCardToSet(
+    @PostMapping(path = "{cardSetId}/IntCard")
+    public Card addNumberCardToSet(
             @PathVariable("cardSetId") Long cardSetId,
             @RequestBody IntCard card
     ){
         System.out.println("the CardSetId is = " + cardSetId);
-        cardSetService.addCardToSet(cardSetId, card);
+        return cardSetService.addCardToSet(cardSetId, card);
+    }
+    @PostMapping(path = "{cardSetId}/DoubleCard")
+    public Card addDoubleCardToSet(
+            @PathVariable("cardSetId") Long cardSetId,
+            @RequestBody DoubleCard card
+    ){
+        System.out.println("the CardSetId is = " + cardSetId);
+        return cardSetService.addCardToSet(cardSetId, card);
+    }
+    @PostMapping(path = "{cardSetId}/LongCard")
+    public Card addLongCardToSet(
+            @PathVariable("cardSetId") Long cardSetId,
+            @RequestBody LongCard card
+    ){
+        System.out.println("the CardSetId is = " + cardSetId);
+        return cardSetService.addCardToSet(cardSetId, card);
     }
     @PostMapping(path = "{cardSetId}/MuSeCard")
-    public void addMuSeCardToSet(
+    public Card addMuSeCardToSet(
             @PathVariable("cardSetId") Long cardSetId,
             @RequestBody MuSeCard card
     ){
         System.out.println("the CardSetId is = " + cardSetId);
-        cardSetService.addCardToSet(cardSetId, card);
+        return cardSetService.addCardToSet(cardSetId, card);
     }
     @PostMapping(path = "{cardSetId}/SiSeCard")
-    public void addSiSeCardToSet(
+    public Card addSiSeCardToSet(
             @PathVariable("cardSetId") Long cardSetId,
             @RequestBody SiSeCard card
     ){
         System.out.println("the CardSetId is = " + cardSetId);
-        cardSetService.addCardToSet(cardSetId, card);
+        return cardSetService.addCardToSet(cardSetId, card);
     }
 
 
