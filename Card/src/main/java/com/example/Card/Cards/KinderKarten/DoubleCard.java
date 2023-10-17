@@ -1,4 +1,4 @@
-package com.example.Card.Cards.KinderKarten.NumberKinder;
+package com.example.Card.Cards.KinderKarten;
 
 import com.example.Card.Cards.Card;
 import com.example.Card.Cards.KinderKarten.NumberCard;
@@ -10,8 +10,8 @@ import lombok.NoArgsConstructor;
 @Data
 @Entity
 @NoArgsConstructor
-public class LongCard extends Card {
+public class DoubleCard extends Card {
 
-    private Long answer;
+    private double answer;
 
 }

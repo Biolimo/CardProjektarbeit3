@@ -1,14 +1,12 @@
 package com.example.Card.Cards;
 
 import com.example.Card.Cards.KinderKarten.*;
-import com.example.Card.Cards.KinderKarten.NumberKinder.DoubleCard;
-import com.example.Card.Cards.KinderKarten.NumberKinder.LongCard;
+import com.example.Card.Cards.KinderKarten.DoubleCard;
+import com.example.Card.Cards.KinderKarten.LongCard;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDate;
 import java.util.List;
-import java.util.Objects;
 
 
 @RestController
