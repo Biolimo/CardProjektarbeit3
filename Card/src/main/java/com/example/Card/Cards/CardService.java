@@ -1,11 +1,13 @@
 package com.example.Card.Cards;
 
 import com.example.Card.Cards.KinderKarten.*;
+import com.example.Card.Cards.KinderKarten.NumberKinder.DoubleCard;
+import com.example.Card.Cards.KinderKarten.NumberKinder.IntCard;
+import com.example.Card.Cards.KinderKarten.NumberKinder.LongCard;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -88,17 +90,43 @@ public class CardService {
                     cardRepository.save(muSeCard);
                 }
                 return userAwnserWas;
-            case "NumberCard":
-                NumberCard numberCard = (NumberCard) card;
+            case "IntCard":
+                IntCard intCard = (IntCard) card;
                 int answerNumberCard = 0;
                 try {
                     answerNumberCard = Integer.parseInt(answer);
                 } catch (NumberFormatException e) {
                     System.out.println("Ungültige Zahl");
                 }
-                userAwnserWas = numberCard.checkUserAnswer(answerNumberCard, numberCard);
+                userAwnserWas = intCard.checkUserAnswer(answerNumberCard, intCard);
                 if(userAwnserWas){
-                    cardRepository.save(numberCard);
+                    cardRepository.save(intCard);
+                }
+                return userAwnserWas;
+            case "DoubleCard":
+                DoubleCard doubleCard = (DoubleCard) card;
+                double answerDoubleCard = 0;
+                try {
+                    answerDoubleCard = Double.parseDouble(answer);
+                } catch (NumberFormatException e) {
+                    System.out.println("Ungültige Zahl");
+                }
+                userAwnserWas = doubleCard.checkUserAnswer(answerDoubleCard, doubleCard);
+                if(userAwnserWas){
+                    cardRepository.save(doubleCard);
+                }
+                return userAwnserWas;
+            case "LongCard":
+                LongCard longCard = (LongCard) card;
+                Long answerLongCard = 0L;
+                try {
+                    answerLongCard = Long.parseLong(answer);
+                } catch (NumberFormatException e) {
+                    System.out.println("Ungültige Zahl");
+                }
+                userAwnserWas = longCard.checkUserAnswer(answerLongCard, longCard);
+                if(userAwnserWas){
+                    cardRepository.save(longCard);
                 }
                 return userAwnserWas;
             case "SiSeCard":

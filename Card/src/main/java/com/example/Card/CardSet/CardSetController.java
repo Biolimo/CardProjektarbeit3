@@ -2,6 +2,7 @@ package com.example.Card.CardSet;
 
 
 import com.example.Card.Cards.KinderKarten.*;
+import com.example.Card.Cards.KinderKarten.NumberKinder.IntCard;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -56,7 +57,7 @@ public class CardSetController {
     @PostMapping(path = "{cardSetId}/NumberCard")
     public void addNumberCardToSet(
             @PathVariable("cardSetId") Long cardSetId,
-            @RequestBody NumberCard card
+            @RequestBody IntCard card
     ){
         System.out.println("the CardSetId is = " + cardSetId);
         cardSetService.addCardToSet(cardSetId, card);

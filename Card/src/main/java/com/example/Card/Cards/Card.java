@@ -35,8 +35,5 @@ public class Card {
     public Card(String question) {
         this.question = question;
     }
-    public boolean checkUserAnswer(Object one, Object two){
-        System.out.println("das nicht richtig");
-        return false;
-    }
+
 }
