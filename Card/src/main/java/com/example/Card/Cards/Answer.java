@@ -8,7 +8,8 @@ import lombok.NoArgsConstructor;
 public class Answer {
     String answerTC;
     int answerIntC;
-    String[] answerMuSeSiSe;
     double answerDC;
     Long answerLC;
+    String[] answerMuSeSiSe;
+    int[] userAnswerMuSe;
 }

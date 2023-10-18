@@ -157,97 +157,51 @@ public class CardService {
 
     //This method checks what kind of card is given and checks the User Answer in the right class
 
-    public boolean checkUserAnswer(Long cardId, String answer) {
+    public boolean checkUserAnswer(Long cardId, Answer answer) {
         Card card = cardRepository.findById(cardId)
                 .orElseThrow(() -> new IllegalStateException(
                         "card with id " + cardId + "is not found"));
 
         boolean userAnswerWas = false;
 
-        switch (card.getDType()) {
-            case "MuSeCard":
-                MuSeCard muSeCard = (MuSeCard) card;
-                String[] answerCast = answer.split(",");
-                int[] answerIntCast = new int[answerCast.length]; // Erstellt ein int-Array gleicher Größe
-
-                // Iteriere durch das String-Array und parsiere die Werte zu Integer
-                for (int i = 0; i < answerCast.length; i++) {
-                    try {
-                        answerIntCast[i] = Integer.parseInt(answerCast[i]); // Parst den String zu Integer
-                    } catch (NumberFormatException e) {
-                        // Handle Ausnahmefall, falls das Parsen fehlschlägt
-                        System.out.println("Ungültige Zahl: " + answerCast[i]);
-                    }
-                }
-                userAnswerWas = muSeCard.checkUserAnswer(answerIntCast, muSeCard);
-                if(userAnswerWas){
-                    cardRepository.save(muSeCard);
-                }
-                break;
-            case "IntCard":
-                IntCard intCard = (IntCard) card;
-                int answerNumberCard = 0;
-                try {
-                    answerNumberCard = Integer.parseInt(answer);
-                } catch (NumberFormatException e) {
-                    System.out.println("Ungültige Zahl");
-                }
-                userAnswerWas = intCard.checkUserAnswer(answerNumberCard, intCard);
-                if(userAnswerWas){
-                    cardRepository.save(intCard);
-                }
-                break;
-            case "DoubleCard":
-                DoubleCard doubleCard = (DoubleCard) card;
-                double answerDoubleCard = 0;
-                try {
-                    answerDoubleCard = Double.parseDouble(answer);
-                } catch (NumberFormatException e) {
-                    System.out.println("Ungültige Zahl");
-                }
-                userAnswerWas = doubleCard.checkUserAnswer(answerDoubleCard, doubleCard);
-                if(userAnswerWas){
-                    cardRepository.save(doubleCard);
-                }
-                break;
-            case "LongCard":
-                LongCard longCard = (LongCard) card;
-                long answerLongCard = 0L;
-                try {
-                    answerLongCard = Long.parseLong(answer);
-                } catch (NumberFormatException e) {
-                    System.out.println("Ungültige Zahl");
-                }
-                userAnswerWas = longCard.checkUserAnswer(answerLongCard, longCard);
-                if(userAnswerWas){
-                    cardRepository.save(longCard);
-                }
-                break;
-            case "SiSeCard":
-                SiSeCard siSeCard = (SiSeCard) card;
-                int answerSiSeCard = 0;
-                try {
-                    answerSiSeCard = Integer.parseInt(answer);
-                } catch (NumberFormatException e) {
-                    System.out.println("Ungültige Zahl");
-                }
-                userAnswerWas = siSeCard.checkUserAnswer(answerSiSeCard, siSeCard);
-                if(userAnswerWas){
-                    cardRepository.save(siSeCard);
-                }
-                break;
-            case "TextCard":
-                TextCard textCard = (TextCard) card;
-                userAnswerWas = textCard.checkUserAnswer(answer,textCard);
-                if(userAnswerWas){
-                    cardRepository.save(textCard);
-                }
-                break;
-            default:
-                // Handle the case when the card type is not recognized
-                System.out.println("Unknown card type: " + card.getDType());
-                // You can return an error message or throw an exception depending on your needs
-                break;
+        if(answer != null) {
+            switch (card.getDType()) {
+                case "MuSeCard":
+                    MuSeCard muSeCard = (MuSeCard) card;
+                    if (answer.getUserAnswerMuSe() == null) throw new IllegalStateException("MuSeCard needs to be answered with userAnswer variable");
+                    userAnswerWas = muSeCard.checkUserAnswer(answer.getUserAnswerMuSe(), muSeCard);
+                    break;
+                case "IntCard":
+                    if(answer.getAnswerIntC() == 0) throw new IllegalStateException("IntCard needs to be answered with answerIntC variable");
+                    IntCard intCard = (IntCard) card;
+                    userAnswerWas = intCard.checkUserAnswer(answer.getAnswerIntC(), intCard);
+                    break;
+                case "DoubleCard":
+                    if(answer.getAnswerDC() == 0) throw new IllegalStateException("DoubleCard needs to be answered with answerDC variable");
+                    DoubleCard doubleCard = (DoubleCard) card;
+                    userAnswerWas = doubleCard.checkUserAnswer(answer.getAnswerDC(), doubleCard);
+                    break;
+                case "LongCard":
+                    if(answer.getAnswerLC() == null) throw new IllegalStateException("LongCard needs to be answered with answerLC variable");
+                    LongCard longCard = (LongCard) card;
+                    userAnswerWas = longCard.checkUserAnswer(answer.getAnswerLC(), longCard);
+                    break;
+                case "SiSeCard":
+                    if(answer.getAnswerIntC() == 0) throw new IllegalStateException("SiSeCard needs to be answered with answerIntC variable");
+                    SiSeCard siSeCard = (SiSeCard) card;
+                    userAnswerWas = siSeCard.checkUserAnswer(answer.getAnswerIntC(), siSeCard);
+                    break;
+                case "TextCard":
+                    if(answer.getAnswerTC() == null) throw new IllegalStateException("TextCard needs to be answered with answerTC variable");
+                    TextCard textCard = (TextCard) card;
+                    userAnswerWas = textCard.checkUserAnswer(answer.getAnswerTC(), textCard);
+                    break;
+                default:
+                    // Handle the case when the card type is not recognized
+                    System.out.println("Unknown card type: " + card.getDType());
+                    // You can return an error message or throw an exception depending on your needs
+                    break;
+            }
         }
         if(userAnswerWas){
             dueDateManager.updateDueDate(card);
