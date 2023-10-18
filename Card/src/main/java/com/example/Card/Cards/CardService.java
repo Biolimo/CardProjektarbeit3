@@ -168,31 +168,37 @@ public class CardService {
             switch (card.getDType()) {
                 case "MuSeCard":
                     MuSeCard muSeCard = (MuSeCard) card;
-                    if (answer.getUserAnswerMuSe() == null) throw new IllegalStateException("MuSeCard needs to be answered with userAnswer variable");
+                    if (answer.getUserAnswerMuSe() == null)
+                        throw new IllegalStateException("MuSeCard needs to be answered with userAnswer variable");
                     userAnswerWas = muSeCard.checkUserAnswer(answer.getUserAnswerMuSe(), muSeCard);
                     break;
                 case "IntCard":
-                    if(answer.getAnswerIntC() == 0) throw new IllegalStateException("IntCard needs to be answered with answerIntC variable also answer cant be 0");
+                    if(answer.getAnswerIntC() == 0)
+                        throw new IllegalStateException("IntCard needs to be answered with answerIntC variable also answer cant be 0");
                     IntCard intCard = (IntCard) card;
                     userAnswerWas = intCard.checkUserAnswer(answer.getAnswerIntC(), intCard);
                     break;
                 case "DoubleCard":
-                    if(answer.getAnswerDC() == 0) throw new IllegalStateException("DoubleCard needs to be answered with answerDC variable also answer cant be 0");
+                    if(answer.getAnswerDC() == 0)
+                        throw new IllegalStateException("DoubleCard needs to be answered with answerDC variable also answer cant be 0");
                     DoubleCard doubleCard = (DoubleCard) card;
                     userAnswerWas = doubleCard.checkUserAnswer(answer.getAnswerDC(), doubleCard);
                     break;
                 case "LongCard":
-                    if(answer.getAnswerLC() == null) throw new IllegalStateException("LongCard needs to be answered with answerLC variable");
+                    if(answer.getAnswerLC() == null)
+                        throw new IllegalStateException("LongCard needs to be answered with answerLC variable");
                     LongCard longCard = (LongCard) card;
                     userAnswerWas = longCard.checkUserAnswer(answer.getAnswerLC(), longCard);
                     break;
                 case "SiSeCard":
-                    if(answer.getAnswerIntC() == 0) throw new IllegalStateException("SiSeCard needs to be answered with answerIntC variable");
+                    if(answer.getAnswerIntC() == 0)
+                        throw new IllegalStateException("SiSeCard needs to be answered with answerIntC variable");
                     SiSeCard siSeCard = (SiSeCard) card;
                     userAnswerWas = siSeCard.checkUserAnswer(answer.getAnswerIntC(), siSeCard);
                     break;
                 case "TextCard":
-                    if(answer.getAnswerTC() == null) throw new IllegalStateException("TextCard needs to be answered with answerTC variable");
+                    if(answer.getAnswerTC() == null)
+                        throw new IllegalStateException("TextCard needs to be answered with answerTC variable");
                     TextCard textCard = (TextCard) card;
                     userAnswerWas = textCard.checkUserAnswer(answer.getAnswerTC(), textCard);
                     break;
