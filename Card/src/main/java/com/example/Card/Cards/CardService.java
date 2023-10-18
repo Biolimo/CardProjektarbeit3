@@ -8,6 +8,7 @@ import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
@@ -65,12 +66,12 @@ public class CardService {
             card.setQuestion(updateInformation.question);
         }
 
-        String response = "";
+        String response = "but you didnt change the answer";
 
         Answer answer = updateInformation.getAnswer();
 
         System.out.println(card.getDType());
-        //if(answer !=null){
+        if(answer !=null){
             switch (card.getDType()) {
                 case "MuSeCard":
                     try {
@@ -80,8 +81,9 @@ public class CardService {
                         MuSeCard muSeCard = (MuSeCard) card;
                         muSeCard.setAnswers(answer.getAnswerMuSeSiSe());
                     }catch(NullPointerException e){
-                        throw new IllegalStateException("MuSeCard needs an String[] as answer");
+                        throw new IllegalStateException("Invalid Input");
                     }
+                    response = "answer was changed to " + Arrays.toString(answer.getAnswerMuSeSiSe());
                     break;
                 case "IntCard":
                     try {
@@ -91,62 +93,63 @@ public class CardService {
                         IntCard intCard = (IntCard) card;
                         intCard.setAnswer(answer.getAnswerIntC());
                     }catch(NullPointerException e){
-                        throw new IllegalStateException("MuSeCard needs an String[] as answer");
+                        throw new IllegalStateException("Invalid Input");
                     }
+                    response = "answer was changed to " + answer.getAnswerIntC();
                     break;
                 case "DoubleCard":
                     try {
-                        if(answer.getAnswerMuSeSiSe() == null){
-                            throw new IllegalStateException("MuSeCard needs to be updated with \"answerMuSeSiSe\" variable");
+                        if(answer.getAnswerDC() == 0.0){
+                            throw new IllegalStateException("MuSeCard needs to be updated with \"answerMuSeSiSe\" variable answer cant be 0.0");
                         }
                         DoubleCard doubleCard = (DoubleCard) card;
                         doubleCard.setAnswer(answer.getAnswerDC());
                     }catch(NullPointerException e){
-                        throw new IllegalStateException("MuSeCard needs an String[] as answer");
+                        throw new IllegalStateException("Invalid Input");
                     }
+                    response = "answer was changed to " + answer.getAnswerDC();
                     break;
                 case "LongCard":
                     try {
-                        if(answer.getAnswerMuSeSiSe() == null){
-                            throw new IllegalStateException("MuSeCard needs to be updated with \"answerMuSeSiSe\" variable");
+                        if(answer.getAnswerLC() == null){
+                            throw new IllegalStateException("MuSeCard needs to be updated with \"answerLC\" variable");
                         }
                         LongCard longCard = (LongCard) card;
                         longCard.setAnswer(answer.getAnswerLC());
                     }catch(NullPointerException e){
-                        throw new IllegalStateException("MuSeCard needs an String[] as answer");
+                        throw new IllegalStateException("Invalid Input");
                     }
+                    response = "answer was changed to " + answer.getAnswerLC();
                     break;
                 case "SiSeCard":
                     try {
                         if(answer.getAnswerMuSeSiSe() == null){
-                            throw new IllegalStateException("MuSeCard needs to be updated with \"answerMuSeSiSe\" variable");
+                            throw new IllegalStateException("SiSeCard needs to be updated with \"answerMuSeSiSe\" variable");
                         }
                         SiSeCard siSeCard = (SiSeCard) card;
                         siSeCard.setAnswers(answer.getAnswerMuSeSiSe());
                     }catch(NullPointerException e){
-                        throw new IllegalStateException("MuSeCard needs an String[] as answer");
+                        throw new IllegalStateException("Invalid Input");
                     }
+                    response = "answer was changed to " + Arrays.toString(answer.getAnswerMuSeSiSe());
                     break;
                 case "TextCard":
                     try {
-                        if(answer.getAnswerMuSeSiSe() == null){
-                            throw new IllegalStateException("MuSeCard needs to be updated with \"answerMuSeSiSe\" variable");
+                        if(answer.getAnswerTC() == null){
+                            throw new IllegalStateException("TextCard needs to be updated with \"answerTC\" variable");
                         }
                         TextCard textCard = (TextCard) card;
                         textCard.setAnswerTC(answer.getAnswerTC());
                     }catch(NullPointerException e){
-                        throw new IllegalStateException("MuSeCard needs an String[] as answer");
+                        throw new IllegalStateException("Invalid Input");
                     }
-
+                    response = "answer was changed to " + answer.getAnswerTC();
                     break;
                 default:
                     // Handle the case when the card type is not recognized
                     System.out.println("Unknown card type: " + card.getDType());
-                    // You can return an error message or throw an exception depending on your needs
                     break;
-            //}
-
-
+            }
         }
         cardRepository.save(card);
         return "Card with ID " + cardId + " has been successfully updated." + response;

@@ -82,7 +82,7 @@ public class CardController {
     @PutMapping(path = "{cardId}/answer")
     public boolean checkUserAnswer(
             @PathVariable("cardId")Long cardId,
-            @RequestParam String answer)
+            @RequestBody String answer)
     {
         System.out.println("Test : question = " + answer);
         return cardService.checkUserAnswer(cardId, answer);
