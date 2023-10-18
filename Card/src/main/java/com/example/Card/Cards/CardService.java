@@ -172,12 +172,12 @@ public class CardService {
                     userAnswerWas = muSeCard.checkUserAnswer(answer.getUserAnswerMuSe(), muSeCard);
                     break;
                 case "IntCard":
-                    if(answer.getAnswerIntC() == 0) throw new IllegalStateException("IntCard needs to be answered with answerIntC variable");
+                    if(answer.getAnswerIntC() == 0) throw new IllegalStateException("IntCard needs to be answered with answerIntC variable also answer cant be 0");
                     IntCard intCard = (IntCard) card;
                     userAnswerWas = intCard.checkUserAnswer(answer.getAnswerIntC(), intCard);
                     break;
                 case "DoubleCard":
-                    if(answer.getAnswerDC() == 0) throw new IllegalStateException("DoubleCard needs to be answered with answerDC variable");
+                    if(answer.getAnswerDC() == 0) throw new IllegalStateException("DoubleCard needs to be answered with answerDC variable also answer cant be 0");
                     DoubleCard doubleCard = (DoubleCard) card;
                     userAnswerWas = doubleCard.checkUserAnswer(answer.getAnswerDC(), doubleCard);
                     break;
@@ -202,7 +202,7 @@ public class CardService {
                     // You can return an error message or throw an exception depending on your needs
                     break;
             }
-        }
+        }else throw new IllegalStateException("there was no answer given");
         if(userAnswerWas){
             dueDateManager.updateDueDate(card);
             cardRepository.save(card);
