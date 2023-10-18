@@ -9,5 +9,7 @@ import lombok.NoArgsConstructor;
 public class UpdateInformation {
 
     String question;
+    String answer;
+
 
 }

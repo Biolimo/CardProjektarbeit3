@@ -10,6 +10,6 @@ import lombok.NoArgsConstructor;
 @Data
 @Entity
 @NoArgsConstructor
-public class NumberCard extends Card{
+public abstract class NumberCard extends Card{
 
 }

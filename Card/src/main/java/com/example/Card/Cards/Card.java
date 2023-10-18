@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @Entity
 @Table
 @NoArgsConstructor
-public class Card {
+public abstract class Card {
     @Id
     @SequenceGenerator(
             name = "card_sequence",
@@ -27,7 +27,6 @@ public class Card {
     private LocalDate dueDate = LocalDate.now();
     private LocalDate creationDate = LocalDate.now();
     private int successCounter = 0;
-    private boolean isDrafted = false;
 
     @Column(name = "dtype", insertable = false, updatable = false)
     private String dType;
