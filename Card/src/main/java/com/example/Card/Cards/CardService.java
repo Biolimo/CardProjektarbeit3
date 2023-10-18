@@ -64,7 +64,92 @@ public class CardService {
         if(updateInformation.getQuestion() != null){
             card.setQuestion(updateInformation.question);
         }
-        return "Card with ID " + cardId + " has been successfully updated.";
+
+        String response = "";
+
+        Answer answer = updateInformation.getAnswer();
+
+        System.out.println(card.getDType());
+        //if(answer !=null){
+            switch (card.getDType()) {
+                case "MuSeCard":
+                    try {
+                        if(answer.getAnswerMuSeSiSe() == null){
+                            throw new IllegalStateException("MuSeCard needs to be updated with \"answerMuSeSiSe\" variable");
+                        }
+                        MuSeCard muSeCard = (MuSeCard) card;
+                        muSeCard.setAnswers(answer.getAnswerMuSeSiSe());
+                    }catch(NullPointerException e){
+                        throw new IllegalStateException("MuSeCard needs an String[] as answer");
+                    }
+                    break;
+                case "IntCard":
+                    try {
+                        if(answer.getAnswerIntC() == 0){
+                            throw new IllegalStateException("IntCard needs to be updated with \"answerIntC\" variable answer cant be 0");
+                        }
+                        IntCard intCard = (IntCard) card;
+                        intCard.setAnswer(answer.getAnswerIntC());
+                    }catch(NullPointerException e){
+                        throw new IllegalStateException("MuSeCard needs an String[] as answer");
+                    }
+                    break;
+                case "DoubleCard":
+                    try {
+                        if(answer.getAnswerMuSeSiSe() == null){
+                            throw new IllegalStateException("MuSeCard needs to be updated with \"answerMuSeSiSe\" variable");
+                        }
+                        DoubleCard doubleCard = (DoubleCard) card;
+                        doubleCard.setAnswer(answer.getAnswerDC());
+                    }catch(NullPointerException e){
+                        throw new IllegalStateException("MuSeCard needs an String[] as answer");
+                    }
+                    break;
+                case "LongCard":
+                    try {
+                        if(answer.getAnswerMuSeSiSe() == null){
+                            throw new IllegalStateException("MuSeCard needs to be updated with \"answerMuSeSiSe\" variable");
+                        }
+                        LongCard longCard = (LongCard) card;
+                        longCard.setAnswer(answer.getAnswerLC());
+                    }catch(NullPointerException e){
+                        throw new IllegalStateException("MuSeCard needs an String[] as answer");
+                    }
+                    break;
+                case "SiSeCard":
+                    try {
+                        if(answer.getAnswerMuSeSiSe() == null){
+                            throw new IllegalStateException("MuSeCard needs to be updated with \"answerMuSeSiSe\" variable");
+                        }
+                        SiSeCard siSeCard = (SiSeCard) card;
+                        siSeCard.setAnswers(answer.getAnswerMuSeSiSe());
+                    }catch(NullPointerException e){
+                        throw new IllegalStateException("MuSeCard needs an String[] as answer");
+                    }
+                    break;
+                case "TextCard":
+                    try {
+                        if(answer.getAnswerMuSeSiSe() == null){
+                            throw new IllegalStateException("MuSeCard needs to be updated with \"answerMuSeSiSe\" variable");
+                        }
+                        TextCard textCard = (TextCard) card;
+                        textCard.setAnswerTC(answer.getAnswerTC());
+                    }catch(NullPointerException e){
+                        throw new IllegalStateException("MuSeCard needs an String[] as answer");
+                    }
+
+                    break;
+                default:
+                    // Handle the case when the card type is not recognized
+                    System.out.println("Unknown card type: " + card.getDType());
+                    // You can return an error message or throw an exception depending on your needs
+                    break;
+            //}
+
+
+        }
+        cardRepository.save(card);
+        return "Card with ID " + cardId + " has been successfully updated." + response;
     }
 
     //This method checks what kind of card is given and checks the User Answer in the right class
