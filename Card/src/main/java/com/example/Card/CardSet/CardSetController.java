@@ -2,6 +2,7 @@ package com.example.Card.CardSet;
 
 
 import com.example.Card.Cards.Card;
+import com.example.Card.Cards.CardUtils.QuestionAndId;
 import com.example.Card.Cards.KinderKarten.*;
 import com.example.Card.Cards.KinderKarten.NumberKinder.DoubleCard;
 import com.example.Card.Cards.KinderKarten.NumberKinder.IntCard;

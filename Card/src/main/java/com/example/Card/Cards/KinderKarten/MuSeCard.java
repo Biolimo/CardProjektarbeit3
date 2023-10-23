@@ -20,8 +20,6 @@ public class MuSeCard extends Card {
 
     //check if answer was right if so return true and add 1 to successCounter
     public boolean checkUserAnswer(int[] userAnswers, MuSeCard muSeCard){
-        System.out.println("userAnswers = " + userAnswers[0]);
-        System.out.println("userAnswers = " + userAnswers[1]);
 
         if(areAllNumbersInArray(muSeCard.getCorrectAnswers(), userAnswers)){
             muSeCard.setSuccessCounter(getSuccessCounter()+1);

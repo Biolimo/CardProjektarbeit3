@@ -1,5 +1,7 @@
 package com.example.Card.Cards;
 
+import com.example.Card.Cards.CardUtils.Answer;
+import com.example.Card.Cards.CardUtils.UpdateInformation;
 import com.example.Card.Cards.KinderKarten.*;
 import com.example.Card.Cards.KinderKarten.NumberKinder.DoubleCard;
 import com.example.Card.Cards.KinderKarten.NumberKinder.IntCard;

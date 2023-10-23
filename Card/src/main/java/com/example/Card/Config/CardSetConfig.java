@@ -1,5 +1,7 @@
-package com.example.Card.CardSet;
+package com.example.Card.Config;
 
+import com.example.Card.CardSet.CardSet;
+import com.example.Card.CardSet.DataBase.CardSetRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

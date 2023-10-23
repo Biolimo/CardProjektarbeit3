@@ -1,5 +1,9 @@
 package com.example.Card.Cards;
 
+import com.example.Card.Cards.CardUtils.Answer;
+import com.example.Card.Cards.CardUtils.DueDateManager;
+import com.example.Card.Cards.CardUtils.UpdateInformation;
+import com.example.Card.Cards.DataBase.CardRepository;
 import com.example.Card.Cards.KinderKarten.*;
 import com.example.Card.Cards.KinderKarten.NumberKinder.DoubleCard;
 import com.example.Card.Cards.KinderKarten.NumberKinder.IntCard;
@@ -63,7 +67,7 @@ public class CardService {
                         "card with id " + cardId + "is not found"));
 
         if(updateInformation.getQuestion() != null){
-            card.setQuestion(updateInformation.question);
+            card.setQuestion(updateInformation.getQuestion());
         }
 
         String response = "but you didnt change the answer";

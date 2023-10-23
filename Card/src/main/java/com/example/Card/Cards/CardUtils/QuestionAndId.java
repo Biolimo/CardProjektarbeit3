@@ -1,4 +1,4 @@
-package com.example.Card.CardSet;
+package com.example.Card.Cards.CardUtils;
 
 
 import lombok.Data;

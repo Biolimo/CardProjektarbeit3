@@ -1,5 +1,7 @@
-package com.example.Card.Cards;
+package com.example.Card.Cards.CardUtils;
 
+import com.example.Card.Cards.Card;
+import com.example.Card.Cards.DataBase.CardRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

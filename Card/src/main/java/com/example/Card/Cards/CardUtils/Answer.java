@@ -1,4 +1,4 @@
-package com.example.Card.Cards;
+package com.example.Card.Cards.CardUtils;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;

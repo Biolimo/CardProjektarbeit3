@@ -1,4 +1,4 @@
-package com.example.Card.Cards;
+package com.example.Card.Config;
 
 import com.example.Card.Cards.KinderKarten.MuSeCard;
 import com.example.Card.Cards.KinderKarten.TextCard;
