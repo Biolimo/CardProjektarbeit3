@@ -169,7 +169,7 @@ public class CardService {
                 case "MuSeCard":
                     MuSeCard muSeCard = (MuSeCard) card;
                     if (answer.getUserAnswerMuSe() == null)
-                        throw new IllegalStateException("MuSeCard needs to be answered with userAnswer variable");
+                        throw new IllegalStateException("MuSeCard needs to be answered with userAnswerMuSe variable");
                     userAnswerWas = muSeCard.checkUserAnswer(answer.getUserAnswerMuSe(), muSeCard);
                     break;
                 case "IntCard":
