@@ -7,6 +7,8 @@ import com.example.Card.Cards.KinderKarten.NumberKinder.DoubleCard;
 import com.example.Card.Cards.KinderKarten.NumberKinder.IntCard;
 import com.example.Card.Cards.KinderKarten.NumberKinder.LongCard;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -23,62 +25,62 @@ public class CardController {
     }
 
     @GetMapping()
-    public List<Card> getCards(){
-        return cardService.getCard();
+    public ResponseEntity<List<Card>> getCards(){
+        return new ResponseEntity<>(cardService.getCard(), HttpStatus.OK);
     }
 
     //Post Methods for all Cards
 
     //Adds a TextCard
     @PostMapping("TextCard")
-    public TextCard addNewTextCard(@RequestBody TextCard textCard){
-        return (TextCard) cardService.addNewCard(textCard);
+    public ResponseEntity<TextCard> addNewTextCard(@RequestBody TextCard textCard){
+        return new ResponseEntity<>((TextCard) cardService.addNewCard(textCard), HttpStatus.CREATED);
     }
 
     //Adds a NumberCard
     @PostMapping("IntCard")
-    public IntCard addNewNumberCard(@RequestBody IntCard intCard){
-        return (IntCard) cardService.addNewCard(intCard);
+    public ResponseEntity<IntCard> addNewNumberCard(@RequestBody IntCard intCard){
+        return new ResponseEntity<>((IntCard) cardService.addNewCard(intCard), HttpStatus.CREATED);
     }
 
     //Adds a DoubleCard
     @PostMapping("DoubleCard")
-    public DoubleCard addNewDoubleCard(@RequestBody DoubleCard doubleCard){
-        return (DoubleCard) cardService.addNewCard(doubleCard);
+    public ResponseEntity<DoubleCard> addNewDoubleCard(@RequestBody DoubleCard doubleCard){
+        return new ResponseEntity<>((DoubleCard) cardService.addNewCard(doubleCard), HttpStatus.CREATED);
     }
 
     //Adds a LongCard
     @PostMapping("LongCard")
-    public LongCard addNewLongCard(@RequestBody LongCard longCard){
-        return (LongCard) cardService.addNewCard(longCard);
+    public ResponseEntity<LongCard> addNewLongCard(@RequestBody LongCard longCard){
+        return new ResponseEntity<>((LongCard) cardService.addNewCard(longCard), HttpStatus.CREATED);
     }
 
     //Adds a SiSeCard
     @PostMapping("SiSeCard")
-    public SiSeCard addNewSiSeCard(@RequestBody SiSeCard siSeCard){
-        return (SiSeCard) cardService.addNewCard(siSeCard);
+    public ResponseEntity<SiSeCard> addNewSiSeCard(@RequestBody SiSeCard siSeCard){
+        return new ResponseEntity<>((SiSeCard) cardService.addNewCard(siSeCard),HttpStatus.CREATED);
     }
 
     //Adds a MuSeCard
     @PostMapping("MuSeCard")
-    public MuSeCard addNewMuSeCard(@RequestBody MuSeCard muSeCard){
-        return (MuSeCard) cardService.addNewCard(muSeCard);
+    public ResponseEntity<MuSeCard> addNewMuSeCard(@RequestBody MuSeCard muSeCard){
+        return new ResponseEntity<>((MuSeCard) cardService.addNewCard(muSeCard), HttpStatus.CREATED);
     }
 
 
     //Method to delete Cards
     @DeleteMapping(path = "{cardId}")
-    public String deleteCard(@PathVariable("cardId") Long cardId){
-        return cardService.deleteCard(cardId);
+    public ResponseEntity<String> deleteCard(@PathVariable("cardId") Long cardId){
+        return new ResponseEntity<>(cardService.deleteCard(cardId), HttpStatus.NO_CONTENT);
     }
 
     //Method to change Cards
-    @PostMapping(path = "{cardId}/update")
-    public String updateCard(
+    @PutMapping(path = "{cardId}/update")
+    public ResponseEntity<String> updateCard(
             @PathVariable("cardId")Long cardId,
             @RequestBody UpdateInformation updateInformation){
 
-        return cardService.updateCard(cardId, updateInformation);
+        return new ResponseEntity<>(cardService.updateCard(cardId, updateInformation), HttpStatus.OK);
     }
 
     @PutMapping(path = "{cardId}/answer")
