@@ -1,12 +1,68 @@
-Projekt von :
-    Maxim Neumann
-    Lara Dörtzbach
-    Kevin Krussmann
-    Valentin Naumann
-    Anne Richardt
-    Yarisha Garcia Raß
-    Nicolas Winter
+**Learning Card System - README**
 
-Mit diesem Projekt haben wir auch eine json datei hochgeladen. Mit dieser können Sie alle Anfragen in Postman automatisch erstellen.
+Welcome to our Learning Card System, a Spring Boot Web Application designed based on the REST Principle.
+This application serves as a basic learning card system, enabling users to create, manage, and study learning cards efficiently.
+This project was developed as part of an assignment for our course, and it provides essential functionalities outlined below.
 
-Das Projekt erfüllt, soweit wir wissen, alle Anforderungen. Wir hoffen Sie haben keine Schwierigkeiten unseren Code nachzuvollziehen :)
+You can find a json file named PostmanCollection in out Project (Card/PostmanCollection.json). Import this to ur Postman to generate the API Requests
+
+### Features:
+
+1. **Create, Update, and Delete Learning Cards:**
+   - Create new learning cards with questions and answers. (Isn't in our Postman file but works)
+   - Update existing learning cards.
+   - Delete learning cards that are no longer needed.
+    Card/src/main/java/com/example/Card/Cards/CardService.java (L35-84)
+
+2. **Card Types:**
+   - Learning cards can contain text, numbers, Multiple Choice (Single Selection), or Multiple Choice (Multi Selection).
+    Card/src/main/java/com/example/Card/Cards/KinderKarten
+
+3. **Set Operations:**
+   - Create, update, and delete sets of learning cards.
+   - Assign learning cards to specific sets for organized studying.
+    Card/src/main/java/com/example/Card/CardSet/CardSetController.java (L40-102)
+
+4. **Scheduling:**
+   - In our code u cant schedule a CardSet itself you can only schedule individual Cards.
+
+5. **Learning Cards Due:**
+   - Provide an endpoint to view learning cards that are due for answering.
+   - Provide an endpoint to viel learning cards randomly for answering.
+   - Provide an endpoint to view learning cards that have a low SuccessCounter.
+    Card/src/main/java/com/example/Card/CardSet/CardSetController.java (L106-122)
+
+6. **Answering Cards:**
+   - Answer learning cards directly through the application, recording your responses.
+    Card/src/main/java/com/example/Card/Cards/CardController.java (L86-92)
+
+7. **List Endpoints:**
+   - Access endpoints to retrieve lists of all learning card sets, all learning cards, and learning cards within a specific card set.
+    Card/src/main/java/com/example/Card/Cards/CardController.java (L27,28)
+    Card/src/main/java/com/example/Card/CardSet/CardSetController.java (L29-37)
+
+
+### Implementation Details:
+
+- **Data Management:**
+  - The application manages data in memory while running.
+
+- **API Responses:**
+  - All responses follow the JSON format.
+
+- **Code Quality:**
+  - The codebase adheres to Java naming conventions and includes meaningful comments for better readability and understanding.
+
+### Usage:
+
+To interact with our Learning Card System, make HTTP requests to the provided endpoints based on your requirements.
+Ensure that your requests include appropriate data in the request body for creating and updating operations.
+Additionally, handle HTTP Status codes according to the response received.
+
+*This project was developed collaboratively by Maxim Neumann
+                                               Lara Dörtzbach
+                                               Kevin Krussmann
+                                               Valentin Naumann
+                                               Anne Richardt
+                                               Yarisha Garcia Raß
+                                               Nicolas Winter.*

@@ -1,0 +1,400 @@
+{
+	"info": {
+		"_postman_id": "6a030d80-3673-4695-8dd4-3de0753e0b1b",
+		"name": "CardSet-Project",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "30531514",
+		"_collection_link": "https://planetary-space-872021.postman.co/workspace/WebProg_CardSet~970e8432-619a-4137-8c06-cbd11a583346/collection/30531514-6a030d80-3673-4695-8dd4-3de0753e0b1b?action=share&source=collection_link&creator=30531514"
+	},
+	"item": [
+		{
+			"name": "CardSet",
+			"item": [
+				{
+					"name": "createCard",
+					"item": [
+						{
+							"name": "createMuSeCard",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"dueDate\": \"2015-12-12\",\r\n    \"question\": \"Welche Länder sind in der EU\",\r\n    \"answers\": [\"Deutschland\",\"Kanada\",\"Frankreich\",\"China\"],\r\n    \"correctAnswers\": [0,2]}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "localhost:8080/cardSet/1/MuSeCard"
+							},
+							"response": []
+						},
+						{
+							"name": "createIntCard",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"dueDate\": \"2022-11-11\",\r\n    \"question\": \"Wie viele Beine hat eine Spinne?\",\r\n    \"answer\": 8\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "localhost:8080/cardSet/1/IntCard"
+							},
+							"response": []
+						},
+						{
+							"name": "createDoubleCard",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"dueDate\": \"2022-11-11\",\r\n    \"question\": \"Wie viele Beine haben 0.6 Spinnen?\",\r\n    \"answer\": 4.8\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "localhost:8080/cardSet/1/DoubleCard"
+							},
+							"response": []
+						},
+						{
+							"name": "createLongCard",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"dueDate\": \"2022-11-11\",\r\n    \"question\": \"Wie viele Beine haben 61435 Spinnen?\",\r\n    \"answer\": 491480\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "localhost:8080/cardSet/1/LongCard"
+							},
+							"response": []
+						},
+						{
+							"name": "createSiSeCard",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"dueDate\": \"2015-12-12\",\r\n    \"question\": \"In welcher Region liegt die Stadt Guernica, an deren trauriges Schicksal Picassos gleichnamiges Gemälde bis heute erinnert?\",\r\n    \"answers\": [\"Andalusien\",\"Baskenland\",\"Katalonien\", \"Galicien\"],\r\n    \"correctAnswer\": 1\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "localhost:8080/cardSet/1/SiSeCard"
+							},
+							"response": []
+						},
+						{
+							"name": "createTextCard",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"dueDate\": \"2015-12-12\",\r\n    \"question\": \"Wer war Otto von Bismarck\",\r\n    \"answerTC\": \"Der erste Reichskanzler\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "localhost:8080/cardSet/1/TextCard"
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "AnswerCardsInSet",
+					"item": [
+						{
+							"name": "getAdueCardFromSet",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"url": "localhost:8080/cardSet/1/answerDueCard"
+							},
+							"response": []
+						},
+						{
+							"name": "getARandomCard",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"url": "localhost:8080/cardSet/1/answerRandomCard"
+							},
+							"response": []
+						},
+						{
+							"name": "getACardWithLowSuccessCount",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"url": "localhost:8080/cardSet/1/answerLowSuccesscountCard"
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "GetAllCardSet",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "localhost:8080/cardSet"
+					},
+					"response": []
+				},
+				{
+					"name": "GetCardSetById",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "localhost:8080/cardSet"
+					},
+					"response": []
+				},
+				{
+					"name": "CreateCardSet",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\":\"Englisch\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "localhost:8080/cardSet"
+					},
+					"response": []
+				},
+				{
+					"name": "DeleteCardSet",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": "localhost:8080/cardSet/2"
+					},
+					"response": []
+				},
+				{
+					"name": "updateCardSet",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "new name",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/cardSet/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"cardSet",
+								"1"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "Englisch Grundkurs",
+									"disabled": true
+								},
+								{
+									"key": "dueDate",
+									"value": "2022-11-22",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Card",
+			"item": [
+				{
+					"name": "Answer",
+					"item": [
+						{
+							"name": "AnswerMuSeCard",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"userAnswerMuSe\" : [0,2]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "localhost:8080/card/1/answer"
+							},
+							"response": []
+						},
+						{
+							"name": "AnswerIntCard",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"answerIntC\" : 8\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "localhost:8080/card/2/answer"
+							},
+							"response": []
+						},
+						{
+							"name": "AnswerDoubleCard",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"answerDC\" : 4.8\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "localhost:8080/card/3/answer"
+							},
+							"response": []
+						},
+						{
+							"name": "AnswerLongCard",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"answerLC\" : 491480\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "localhost:8080/card/4/answer"
+							},
+							"response": []
+						},
+						{
+							"name": "AnswerSiSeCard",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"answerIntC\" : 1\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "localhost:8080/card/5/answer"
+							},
+							"response": []
+						},
+						{
+							"name": "AnswerTextCard",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"answerTC\" : \"Der erste Reichskanzler\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "localhost:8080/card/6/answer"
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "GetAllCards",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "localhost:8080/card"
+					},
+					"response": []
+				},
+				{
+					"name": "UpdateCard",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"question\" : \"changed with update\",\r\n    \"answer\" : {\r\n        \"answerMuSeSiSe\" : [1,2]\r\n    }\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "localhost:8080/card/1/update"
+					},
+					"response": []
+				},
+				{
+					"name": "DeleteCard",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": "localhost:8080/card/2"
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
