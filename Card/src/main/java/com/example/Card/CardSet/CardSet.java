@@ -28,8 +28,8 @@ public class CardSet {
     private String name;
 
 
-    //Code I copied to make error go away
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    //relationship is one-to-many
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY) //when card in cardset is changed it should also change in card, fetch type lazy for performance.
     @JoinColumn(name = "cardSetId") // This is the foreign key in the Card table
     private Set<Card> cards;
 
