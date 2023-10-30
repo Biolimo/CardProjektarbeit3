@@ -79,7 +79,6 @@ public class CardSetService {
     public QuestionAndId getQuestionFromCardSetByDueDate(Long cardSetId) {
 
         CardSet cardSet = cardSetRepository.getReferenceById(cardSetId);
-        QuestionAndId questionAndId;
 
         // Get the list of cards from the card set
         List<Card> cards = new ArrayList<>(cardSet.getCards());
@@ -94,55 +93,27 @@ public class CardSetService {
                 .findFirst()
                 .orElse(null);
 
-
-        // Return the question of the due card, or a message if no due card is found
-        if (dueCard != null) {
-            questionAndId = new QuestionAndId(dueCard.getQuestion(),dueCard.getId(), dueCard.getDType());
-        } else {
-            questionAndId = new QuestionAndId("No due card found for the specified card set ID.");
-        }
-        return questionAndId;
+        return setQuestionAndId(dueCard);
     }
 
     public QuestionAndId getQuestionFromCardSetByRandom(Long cardSetId) {
 
         CardSet cardSet = cardSetRepository.getReferenceById(cardSetId);
-        QuestionAndId questionAndId = null;
 
         List<Card> cards = new ArrayList<>(cardSet.getCards());
 
-        if (!cards.isEmpty()) {
-            // Generate a random index within the size of the list
-            Random random = new Random();
-            int randomIndex = random.nextInt(cards.size());
+        // Generate a random index within the size of the list
+        Random random = new Random();
+        int randomIndex = random.nextInt(cards.size());
 
-            // Retrieve and return the random card
-            Card dueCard = cards.get(randomIndex);
-
-            if (dueCard != null) {
-                if(Objects.equals(dueCard.getDType(), "MuSeCard")){
-                    MuSeCard muSeCard = (MuSeCard)dueCard;
-                    questionAndId = new QuestionAndId(muSeCard.getQuestion(),muSeCard.getId(), muSeCard.getDType(), muSeCard.getAnswers());
-                }else {
-                    if(Objects.equals(dueCard.getDType(), "SiSeCard")){
-                        SiSeCard siSeCard = (SiSeCard) dueCard;
-                        questionAndId = new QuestionAndId(siSeCard.getQuestion(),siSeCard.getId(), siSeCard.getDType(), siSeCard.getAnswers());
-                    }else{
-                    questionAndId = new QuestionAndId(dueCard.getQuestion(),dueCard.getId(), dueCard.getDType());}
-                }
-            } else {
-                questionAndId = new QuestionAndId("No due card found for the specified card set ID.");
-            }
-
-
-        }
-        return questionAndId;
+        // Retrieve and return the random card
+        Card dueCard = cards.get(randomIndex);
+        return setQuestionAndId(dueCard);
     }
 
     public QuestionAndId getQuestionFromCardSetBySuccessCount(Long cardSetId) {
 
         CardSet cardSet = cardSetRepository.getReferenceById(cardSetId);
-        QuestionAndId questionAndId;
 
         List<Card> cards = new ArrayList<>(cardSet.getCards());
         cards.sort(Comparator.comparing(Card::getSuccessCounter));
@@ -150,8 +121,22 @@ public class CardSetService {
         Card dueCard = cards.stream()
                 .findFirst()
                 .orElse(null);
+        return setQuestionAndId(dueCard);
+    }
+
+    public QuestionAndId setQuestionAndId(Card dueCard){
+        QuestionAndId questionAndId;
         if (dueCard != null) {
-            questionAndId = new QuestionAndId(dueCard.getQuestion(),dueCard.getId(), dueCard.getDType());
+            if(Objects.equals(dueCard.getDType(), "MuSeCard")){
+                MuSeCard muSeCard = (MuSeCard)dueCard;
+                questionAndId = new QuestionAndId(muSeCard.getQuestion(),muSeCard.getId(), muSeCard.getDType(), muSeCard.getAnswers());
+            }else {
+                if(Objects.equals(dueCard.getDType(), "SiSeCard")){
+                    SiSeCard siSeCard = (SiSeCard) dueCard;
+                    questionAndId = new QuestionAndId(siSeCard.getQuestion(),siSeCard.getId(), siSeCard.getDType(), siSeCard.getAnswers());
+                }else{
+                    questionAndId = new QuestionAndId(dueCard.getQuestion(),dueCard.getId(), dueCard.getDType());}
+            }
         } else {
             questionAndId = new QuestionAndId("No due card found for the specified card set ID.");
         }
