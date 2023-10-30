@@ -65,6 +65,7 @@ public class CardSetService {
                 "card with id " + cardSetId + "is not found"));
         cardSet.addCards(card);
         cardSetRepository.save(cardSet);
+        System.out.println("New Card with id = " + card.getId() + " has been added!");
         return card;
     }
 

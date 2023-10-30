@@ -86,7 +86,6 @@ public class CardController {
             @PathVariable("cardId")Long cardId,
             @RequestBody Answer answer)
     {
-        System.out.println("Test : answer = " + answer);
         return cardService.checkUserAnswer(cardId, answer);
     }
 

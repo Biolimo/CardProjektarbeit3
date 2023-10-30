@@ -216,8 +216,10 @@ public class CardService {
         if(userAnswerWas){
             dueDateManager.updateDueDate(card);
             cardRepository.save(card);
+            System.out.println("A " + card.getDType() + " was answered correctly");
             return true;
         }
+        System.out.println("A " + card.getDType() + " was answered falsely");
         return false;
     }
 }

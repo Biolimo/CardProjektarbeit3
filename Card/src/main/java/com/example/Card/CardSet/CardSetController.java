@@ -54,15 +54,13 @@ public class CardSetController {
             @PathVariable("cardSetId") Long cardSetId,
             @RequestBody TextCard card
     ){
-        System.out.println("the CardSetId is = " + cardSetId);
         return cardSetService.addCardToSet(cardSetId, card);
     }
     @PostMapping(path = "{cardSetId}/IntCard")
-    public Card addNumberCardToSet(
+    public Card addIntCardToSet(
             @PathVariable("cardSetId") Long cardSetId,
             @RequestBody IntCard card
     ){
-        System.out.println("the CardSetId is = " + cardSetId);
         return cardSetService.addCardToSet(cardSetId, card);
     }
     @PostMapping(path = "{cardSetId}/DoubleCard")
@@ -70,7 +68,6 @@ public class CardSetController {
             @PathVariable("cardSetId") Long cardSetId,
             @RequestBody DoubleCard card
     ){
-        System.out.println("the CardSetId is = " + cardSetId);
         return cardSetService.addCardToSet(cardSetId, card);
     }
     @PostMapping(path = "{cardSetId}/LongCard")
@@ -78,7 +75,6 @@ public class CardSetController {
             @PathVariable("cardSetId") Long cardSetId,
             @RequestBody LongCard card
     ){
-        System.out.println("the CardSetId is = " + cardSetId);
         return cardSetService.addCardToSet(cardSetId, card);
     }
     @PostMapping(path = "{cardSetId}/MuSeCard")
@@ -86,7 +82,6 @@ public class CardSetController {
             @PathVariable("cardSetId") Long cardSetId,
             @RequestBody MuSeCard card
     ){
-        System.out.println("the CardSetId is = " + cardSetId);
         return cardSetService.addCardToSet(cardSetId, card);
     }
     @PostMapping(path = "{cardSetId}/SiSeCard")
@@ -94,7 +89,6 @@ public class CardSetController {
             @PathVariable("cardSetId") Long cardSetId,
             @RequestBody SiSeCard card
     ){
-        System.out.println("the CardSetId is = " + cardSetId);
         return cardSetService.addCardToSet(cardSetId, card);
     }
 
