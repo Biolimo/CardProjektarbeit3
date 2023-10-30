@@ -8,6 +8,8 @@ import com.example.Card.Cards.KinderKarten.NumberKinder.DoubleCard;
 import com.example.Card.Cards.KinderKarten.NumberKinder.IntCard;
 import com.example.Card.Cards.KinderKarten.NumberKinder.LongCard;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -23,93 +25,93 @@ public class CardSetController {
 
     //Returns all CardSets
     @GetMapping
-    public List<CardSet> getCardSet(){
-        return cardSetService.getCardSet();
+    public ResponseEntity<List<CardSet>> getCardSet(){
+        return new ResponseEntity<>(cardSetService.getCardSet(), HttpStatus.OK);
     }
 
     //Adds a new CardSet
     @PostMapping
-    public CardSet addNewCardSet(@RequestBody CardSet cardSet){
-        return cardSetService.addNewCardSet(cardSet);
+    public ResponseEntity<CardSet> addNewCardSet(@RequestBody CardSet cardSet){
+        return new ResponseEntity<>(cardSetService.addNewCardSet(cardSet), HttpStatus.CREATED);
     }
 
     //Delete a CardSet
     @DeleteMapping(path = "{cardSetId}")
-    public String deleteCardSet(@PathVariable("cardSetId") Long cardSetId){
-        return cardSetService.deleteCard(cardSetId);
+    public ResponseEntity<String> deleteCardSet(@PathVariable("cardSetId") Long cardSetId){
+        return new ResponseEntity<>(cardSetService.deleteCard(cardSetId),HttpStatus.NO_CONTENT);
     }
 
     //Updates a CardSet
-    @PostMapping(path = "{cardSetId}")
-    public String updateCardSet(
+    @PutMapping(path = "{cardSetId}")
+    public ResponseEntity<String> updateCardSet(
             @PathVariable("cardSetId")Long cardSetId,
             @RequestBody String name){
-        return cardSetService.updateCardSet(cardSetId, name);
+        return new ResponseEntity<>(cardSetService.updateCardSet(cardSetId, name), HttpStatus.OK);
     }
 
 
     //Add the different Cards to the set.
     @PostMapping(path = "{cardSetId}/TextCard")
-    public Card addTextCardToSet(
+    public ResponseEntity<Card> addTextCardToSet(
             @PathVariable("cardSetId") Long cardSetId,
             @RequestBody TextCard card
     ){
-        return cardSetService.addCardToSet(cardSetId, card);
+        return new ResponseEntity<>(cardSetService.addCardToSet(cardSetId, card), HttpStatus.CREATED);
     }
     @PostMapping(path = "{cardSetId}/IntCard")
-    public Card addIntCardToSet(
+    public ResponseEntity<Card> addIntCardToSet(
             @PathVariable("cardSetId") Long cardSetId,
             @RequestBody IntCard card
     ){
-        return cardSetService.addCardToSet(cardSetId, card);
+        return new ResponseEntity<>(cardSetService.addCardToSet(cardSetId, card), HttpStatus.CREATED);
     }
     @PostMapping(path = "{cardSetId}/DoubleCard")
-    public Card addDoubleCardToSet(
+    public ResponseEntity<Card> addDoubleCardToSet(
             @PathVariable("cardSetId") Long cardSetId,
             @RequestBody DoubleCard card
     ){
-        return cardSetService.addCardToSet(cardSetId, card);
+        return new ResponseEntity<>(cardSetService.addCardToSet(cardSetId, card), HttpStatus.CREATED);
     }
     @PostMapping(path = "{cardSetId}/LongCard")
-    public Card addLongCardToSet(
+    public ResponseEntity<Card> addLongCardToSet(
             @PathVariable("cardSetId") Long cardSetId,
             @RequestBody LongCard card
     ){
-        return cardSetService.addCardToSet(cardSetId, card);
+        return new ResponseEntity<>(cardSetService.addCardToSet(cardSetId, card), HttpStatus.CREATED);
     }
     @PostMapping(path = "{cardSetId}/MuSeCard")
-    public Card addMuSeCardToSet(
+    public ResponseEntity<Card> addMuSeCardToSet(
             @PathVariable("cardSetId") Long cardSetId,
             @RequestBody MuSeCard card
     ){
-        return cardSetService.addCardToSet(cardSetId, card);
+        return new ResponseEntity<>(cardSetService.addCardToSet(cardSetId, card), HttpStatus.CREATED);
     }
     @PostMapping(path = "{cardSetId}/SiSeCard")
-    public Card addSiSeCardToSet(
+    public ResponseEntity<Card> addSiSeCardToSet(
             @PathVariable("cardSetId") Long cardSetId,
             @RequestBody SiSeCard card
     ){
-        return cardSetService.addCardToSet(cardSetId, card);
+        return new ResponseEntity<>(cardSetService.addCardToSet(cardSetId, card), HttpStatus.CREATED);
     }
 
 
     //get A question from a CardSet
     @PutMapping("{cardSetId}/answerDueCard")
-    public QuestionAndId answerDueCard(
+    public ResponseEntity<QuestionAndId> answerDueCard(
             @PathVariable("cardSetId") Long cardSetId){
-        return cardSetService.getQuestionFromCardSetByDueDate(cardSetId);
+        return new ResponseEntity<>(cardSetService.getQuestionFromCardSetByDueDate(cardSetId), HttpStatus.OK);
     }
 
     @PutMapping("{cardSetId}/answerRandomCard")
-    public QuestionAndId answerRandomCard(
+    public ResponseEntity<QuestionAndId> answerRandomCard(
             @PathVariable("cardSetId") Long cardSetId){
-        return cardSetService.getQuestionFromCardSetByRandom(cardSetId);
+        return new ResponseEntity<>(cardSetService.getQuestionFromCardSetByRandom(cardSetId), HttpStatus.OK);
     }
 
     @PutMapping("{cardSetId}/answerLowSuccesscountCard")
-    public QuestionAndId answerLowSuccessCountCard(
+    public ResponseEntity<QuestionAndId> answerLowSuccessCountCard(
             @PathVariable("cardSetId") Long cardSetId){
-        return cardSetService.getQuestionFromCardSetBySuccessCount(cardSetId);
+        return new ResponseEntity<>(cardSetService.getQuestionFromCardSetBySuccessCount(cardSetId), HttpStatus.OK);
     }
 
 }
