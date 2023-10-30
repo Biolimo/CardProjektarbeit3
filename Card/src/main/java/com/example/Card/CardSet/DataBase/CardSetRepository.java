@@ -10,4 +10,5 @@ public interface CardSetRepository
 
     Optional<CardSet> findCardSetByName(String name);
 
+    CardSet findCardSetById(Long cardSetId);
 }

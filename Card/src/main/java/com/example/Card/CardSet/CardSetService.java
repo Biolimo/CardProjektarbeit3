@@ -3,6 +3,8 @@ package com.example.Card.CardSet;
 import com.example.Card.CardSet.DataBase.CardSetRepository;
 import com.example.Card.Cards.*;
 import com.example.Card.Cards.CardUtils.QuestionAndId;
+import com.example.Card.Cards.KinderKarten.MuSeCard;
+import com.example.Card.Cards.KinderKarten.SiSeCard;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,7 +26,11 @@ public class CardSetService {
         return cardSetRepository.findAll();
     }
 
+    public CardSet getCardSetById(Long cardSetId) {
+        return cardSetRepository.findCardSetById(cardSetId);
+    }
     //Adds a new CardSet
+
     public CardSet addNewCardSet(CardSet cardSet){
         Optional<CardSet> cardSetByName = cardSetRepository.findCardSetByName(cardSet.getName());
         if(cardSetByName.isPresent()){
@@ -33,8 +39,8 @@ public class CardSetService {
         cardSetRepository.save(cardSet);
         return cardSet;
     }
-
     //Delete a CardSet
+
     public String deleteCard(Long cardSetId){
         boolean exists = cardSetRepository.existsById(cardSetId);
         if(!exists){
@@ -43,8 +49,8 @@ public class CardSetService {
         cardSetRepository.deleteById(cardSetId);
         return "CardSet with ID " + cardSetId + " has been successfully deleted.";
     }
-
     //Update a CardSet name
+
     @Transactional
     public String updateCardSet(
             long cardSetId,
@@ -57,8 +63,8 @@ public class CardSetService {
         }
         return "CardSet with ID " + cardSetId + " has been successfully updated.";
     }
-
     //Add a Card to a Set
+
     public Card addCardToSet(Long cardSetId,Card card) {
         CardSet cardSet = cardSetRepository.findById(cardSetId)
                 .orElseThrow(() -> new IllegalStateException(
@@ -68,8 +74,8 @@ public class CardSetService {
         System.out.println("New Card with id = " + card.getId() + " has been added!");
         return card;
     }
-
     //Get a Question from a CardSet
+
     public QuestionAndId getQuestionFromCardSetByDueDate(Long cardSetId) {
 
         CardSet cardSet = cardSetRepository.getReferenceById(cardSetId);
@@ -112,11 +118,23 @@ public class CardSetService {
 
             // Retrieve and return the random card
             Card dueCard = cards.get(randomIndex);
+
             if (dueCard != null) {
-                questionAndId = new QuestionAndId(dueCard.getQuestion(),dueCard.getId(), dueCard.getDType());
+                if(Objects.equals(dueCard.getDType(), "MuSeCard")){
+                    MuSeCard muSeCard = (MuSeCard)dueCard;
+                    questionAndId = new QuestionAndId(muSeCard.getQuestion(),muSeCard.getId(), muSeCard.getDType(), muSeCard.getAnswers());
+                }else {
+                    if(Objects.equals(dueCard.getDType(), "SiSeCard")){
+                        SiSeCard siSeCard = (SiSeCard) dueCard;
+                        questionAndId = new QuestionAndId(siSeCard.getQuestion(),siSeCard.getId(), siSeCard.getDType(), siSeCard.getAnswers());
+                    }else{
+                    questionAndId = new QuestionAndId(dueCard.getQuestion(),dueCard.getId(), dueCard.getDType());}
+                }
             } else {
                 questionAndId = new QuestionAndId("No due card found for the specified card set ID.");
             }
+
+
         }
         return questionAndId;
     }

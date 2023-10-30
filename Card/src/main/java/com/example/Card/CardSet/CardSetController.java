@@ -2,11 +2,13 @@ package com.example.Card.CardSet;
 
 
 import com.example.Card.Cards.Card;
+import com.example.Card.Cards.CardUtils.Answer;
 import com.example.Card.Cards.CardUtils.QuestionAndId;
 import com.example.Card.Cards.KinderKarten.*;
 import com.example.Card.Cards.KinderKarten.NumberKinder.DoubleCard;
 import com.example.Card.Cards.KinderKarten.NumberKinder.IntCard;
 import com.example.Card.Cards.KinderKarten.NumberKinder.LongCard;
+import org.apache.coyote.Request;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -29,6 +31,11 @@ public class CardSetController {
         return new ResponseEntity<>(cardSetService.getCardSet(), HttpStatus.OK);
     }
 
+    @GetMapping(path = "{cardSetId}")
+    public ResponseEntity<CardSet> getCardSetById(@PathVariable Long cardSetId){
+        return new ResponseEntity<>(cardSetService.getCardSetById(cardSetId), HttpStatus.OK);
+    }
+
     //Adds a new CardSet
     @PostMapping
     public ResponseEntity<CardSet> addNewCardSet(@RequestBody CardSet cardSet){
@@ -45,8 +52,8 @@ public class CardSetController {
     @PutMapping(path = "{cardSetId}")
     public ResponseEntity<String> updateCardSet(
             @PathVariable("cardSetId")Long cardSetId,
-            @RequestBody String name){
-        return new ResponseEntity<>(cardSetService.updateCardSet(cardSetId, name), HttpStatus.OK);
+            @RequestBody Request name){
+        return new ResponseEntity<>(cardSetService.updateCardSet(cardSetId, name.getCharacterEncoding()), HttpStatus.OK);
     }
 
 
@@ -113,6 +120,5 @@ public class CardSetController {
             @PathVariable("cardSetId") Long cardSetId){
         return new ResponseEntity<>(cardSetService.getQuestionFromCardSetBySuccessCount(cardSetId), HttpStatus.OK);
     }
-
 }
 
